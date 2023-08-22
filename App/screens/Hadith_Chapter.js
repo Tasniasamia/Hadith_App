@@ -11,7 +11,8 @@ const Hadith_Chapter =() => {
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor:"#dbdbda" ,
-          marginBottom: 5
+          
+       marginBottom:5
         },
         image: {
           width: screenWidth - 10,
@@ -40,8 +41,8 @@ const Hadith_Chapter =() => {
       />
       <Text style={styles.text}>Hadith</Text>
     </View>
-    <SafeAreaView >
-        <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,padding:20}}>
+    <View >
+        <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,padding:20,marginTop:0}}>
         <View  style={{flex:60,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}>
 <Text style={{fontSize:18,marginRight:4,color:"gray"}}>1.</Text>
 <Text style={{fontSize:18,color:"gray"}}>The Number of Hadith</Text>
@@ -73,7 +74,7 @@ const Hadith_Chapter =() => {
 
 
 
-    </SafeAreaView>
+    </View>
       
       </ScrollView>
     );
