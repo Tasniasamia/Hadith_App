@@ -1,5 +1,6 @@
 import React, { useEffect,useRef, useState ,useContext,useCallback } from 'react';
-import {FlatList,ScrollView,ActivityIndicator,Animated, Dimensions ,StyleSheet, Text, View,ImageBackground ,SafeAreaView,Platform ,StatusBar,Image,Button,TextInput, Pressable} from 'react-native';
+import {FlatList,ScrollView,ActivityIndicator,Animated, Dimensions ,StyleSheet, Text, View,ImageBackground ,SafeAreaView,Platform ,StatusBar,Image,Button,TextInput, Pressable, TouchableOpacity} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import colors from '../config/colors';
 
@@ -37,17 +38,56 @@ function Homepage({navigation,route}) {
             <View style={[styles.MainContainer]}>
                 <StatusBar
                 animated={true}
-                backgroundColor="#000066"
+                backgroundColor="#f1f1f1"
                 // barStyle={statusBarStyle}
                 
                 />
 
-                {/* Write your code here */}
-       
-         
+<SafeAreaView style={{flex:1,flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+                {/* one Category of Hadith */}
+             
+                <View style={{backgroundColor:"white",width:300,marginVertical:5}}>
+        {/* part-1 */}
 
-            </View>
+<View style={{flexDirection:"row",alignItems:"stretch"}}>
+    {/* part-1-(Hadith Logo) */}
+    <View style={{marginHorizontal:10,marginTop:12}}>
+<Image style={{ width: 50, height: 50 }}  source={require('../assets/Hadith_logo.png')}/>
+    </View>
+        {/* part-1-(Hadith_Category_Details) */}
 
+    <View style={{marginLeft:10,paddingTop:10}}>
+        <Text style={{fontSize:20}}>Hadith-1</Text>
+        <Text style={{marginVertical:4}}>cwww.Hadith.com</Text>
+        <Text >
+  <Ionicons name="stats-chart" size={20} color="gray" />
+  <Text style={{paddingHorizontal:10}}>  323/586</Text>
+</Text>
+<View style={{flexDirection:"row",paddingVertical:10}}>
+              <Ionicons name="star-sharp" size={20} color="gray" />
+                <Text>  492 / 61</Text>
+                </View>  
+                </View>
+    </View>
+
+
+</View>
+                
+                
+                
+      {/* part-2           */}
+                
+                
+           
+
+          
+               
+
+
+
+
+                </SafeAreaView>
+</View>
         <View style={[styles.footerStyle]}>
 
 <View style={{width:'100%',height:69,justifyContent:'center',alignItems:'center',flexDirection:'row',backgroundColor:colors.white}}>

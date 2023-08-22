@@ -28,6 +28,7 @@ import Firstslider from '../App/screens/firstslide';
 import Secondslide from '../App/screens/secondslide';
 import Thirdslide from '../App/screens/thirdslide';
 import CustomSidebarMenu from '../App/screens/CustomSidebarMenu';
+import Main from '../App/screens/Main';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -133,6 +134,7 @@ const RootStack = ({navigation}) => {
 
 
                                         <Stack.Screen name="Homepage" component={Homepage} />
+                                        <Stack.Screen name="Main" component={Main} />
 
                                         {/* Write your code here */}
        
