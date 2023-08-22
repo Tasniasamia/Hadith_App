@@ -43,10 +43,11 @@ function Homepage({navigation,route}) {
                 
                 />
 
-<SafeAreaView style={{flex:1,flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+<ScrollView  contentContainerStyle={{flex:1,flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
                 {/* one Category of Hadith */}
              
-                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}}>
+                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}} >
+                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter")}>
         {/* part-1 */}
 
 <View style={{flexDirection:"row",alignItems:"stretch"}}>
@@ -68,7 +69,7 @@ function Homepage({navigation,route}) {
     </View>
 
 
-
+    </TouchableOpacity>
                 
                 
                 
@@ -82,11 +83,187 @@ function Homepage({navigation,route}) {
 
                 </View>
                
+                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}} >
+                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter")}>
+        {/* part-1 */}
+
+<View style={{flexDirection:"row",alignItems:"stretch"}}>
+    {/* part-1-(Hadith Logo) */}
+    <View style={{marginHorizontal:10,marginTop:12}}>
+<Image style={{ width: 80, height: 80 }}  source={require('../assets/Hadith_logo.png')}/>
+    </View>
+        {/* part-1-(Hadith_Category_Details) */}
+
+    <View style={{marginLeft:10,paddingTop:10}}>
+        <Text style={{fontSize:20}}>Hadith-1</Text>
+        <Text style={{marginVertical:4}}>cwww.Hadith.com</Text>
+        <Text >
+  <Ionicons name="stats-chart" size={20} color="gray" />
+  <Text style={{paddingHorizontal:10}}>  323/586</Text>
+</Text>
+  
+                </View>
+    </View>
 
 
+    </TouchableOpacity>
+                
+                
+                
+      {/* part-2           */}
+                
+                
+      <View style={{flexDirection:"row",paddingVertical:10,marginLeft:13}}>
+              <Ionicons name="star-sharp" size={20} color="gray" />
+                <Text>  492 / 61</Text>
+                </View>
+
+                </View>
+                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}} >
+                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter")}>
+        {/* part-1 */}
+
+<View style={{flexDirection:"row",alignItems:"stretch"}}>
+    {/* part-1-(Hadith Logo) */}
+    <View style={{marginHorizontal:10,marginTop:12}}>
+<Image style={{ width: 80, height: 80 }}  source={require('../assets/Hadith_logo.png')}/>
+    </View>
+        {/* part-1-(Hadith_Category_Details) */}
+
+    <View style={{marginLeft:10,paddingTop:10}}>
+        <Text style={{fontSize:20}}>Hadith-1</Text>
+        <Text style={{marginVertical:4}}>cwww.Hadith.com</Text>
+        <Text >
+  <Ionicons name="stats-chart" size={20} color="gray" />
+  <Text style={{paddingHorizontal:10}}>  323/586</Text>
+</Text>
+  
+                </View>
+    </View>
 
 
-                </SafeAreaView>
+    </TouchableOpacity>
+                
+                
+                
+      {/* part-2           */}
+                
+                
+      <View style={{flexDirection:"row",paddingVertical:10,marginLeft:13}}>
+              <Ionicons name="star-sharp" size={20} color="gray" />
+                <Text>  492 / 61</Text>
+                </View>
+
+                </View>
+                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}} >
+                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter")}>
+        {/* part-1 */}
+
+<View style={{flexDirection:"row",alignItems:"stretch"}}>
+    {/* part-1-(Hadith Logo) */}
+    <View style={{marginHorizontal:10,marginTop:12}}>
+<Image style={{ width: 80, height: 80 }}  source={require('../assets/Hadith_logo.png')}/>
+    </View>
+        {/* part-1-(Hadith_Category_Details) */}
+
+    <View style={{marginLeft:10,paddingTop:10}}>
+        <Text style={{fontSize:20}}>Hadith-1</Text>
+        <Text style={{marginVertical:4}}>cwww.Hadith.com</Text>
+        <Text >
+  <Ionicons name="stats-chart" size={20} color="gray" />
+  <Text style={{paddingHorizontal:10}}>  323/586</Text>
+</Text>
+  
+                </View>
+    </View>
+
+
+    </TouchableOpacity>
+                
+                
+                
+      {/* part-2           */}
+                
+                
+      <View style={{flexDirection:"row",paddingVertical:10,marginLeft:13}}>
+              <Ionicons name="star-sharp" size={20} color="gray" />
+                <Text>  492 / 61</Text>
+                </View>
+
+                </View>
+                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}} >
+                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter")}>
+        {/* part-1 */}
+
+<View style={{flexDirection:"row",alignItems:"stretch"}}>
+    {/* part-1-(Hadith Logo) */}
+    <View style={{marginHorizontal:10,marginTop:12}}>
+<Image style={{ width: 80, height: 80 }}  source={require('../assets/Hadith_logo.png')}/>
+    </View>
+        {/* part-1-(Hadith_Category_Details) */}
+
+    <View style={{marginLeft:10,paddingTop:10}}>
+        <Text style={{fontSize:20}}>Hadith-1</Text>
+        <Text style={{marginVertical:4}}>cwww.Hadith.com</Text>
+        <Text >
+  <Ionicons name="stats-chart" size={20} color="gray" />
+  <Text style={{paddingHorizontal:10}}>  323/586</Text>
+</Text>
+  
+                </View>
+    </View>
+
+
+    </TouchableOpacity>
+                
+                
+                
+      {/* part-2           */}
+                
+                
+      <View style={{flexDirection:"row",paddingVertical:10,marginLeft:13}}>
+              <Ionicons name="star-sharp" size={20} color="gray" />
+                <Text>  492 / 61</Text>
+                </View>
+
+                </View>
+                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}} >
+                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter")}>
+        {/* part-1 */}
+
+<View style={{flexDirection:"row",alignItems:"stretch"}}>
+    {/* part-1-(Hadith Logo) */}
+    <View style={{marginHorizontal:10,marginTop:12}}>
+<Image style={{ width: 80, height: 80 }}  source={require('../assets/Hadith_logo.png')}/>
+    </View>
+        {/* part-1-(Hadith_Category_Details) */}
+
+    <View style={{marginLeft:10,paddingTop:10}}>
+        <Text style={{fontSize:20}}>Hadith-1</Text>
+        <Text style={{marginVertical:4}}>cwww.Hadith.com</Text>
+        <Text >
+  <Ionicons name="stats-chart" size={20} color="gray" />
+  <Text style={{paddingHorizontal:10}}>  323/586</Text>
+</Text>
+  
+                </View>
+    </View>
+
+
+    </TouchableOpacity>
+                
+                
+                
+      {/* part-2           */}
+                
+                
+      <View style={{flexDirection:"row",paddingVertical:10,marginLeft:13}}>
+              <Ionicons name="star-sharp" size={20} color="gray" />
+                <Text>  492 / 61</Text>
+                </View>
+
+                </View>
+                </ScrollView>
 </View>
         <View style={[styles.footerStyle]}>
 
