@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "jsEngine": "hermes",
+    "name": "Hadis2023",
+    "slug": "hadis2023",
+    "version": "1.0.0",
+
+    "orientation": "portrait",
+    "icon": "./logo/icon.png",
+   
+    "splash": {
+      "image": "./logo/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    }
+    ,
+
+    "platforms": ["ios", "android"],
+
+    "ios": {
+      "supportsTablet": false
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+   
+    "android": {
+      "package": "com.qitca.hadis2023",
+      "versionCode": 10,
+      "adaptiveIcon": {
+        "foregroundImage": "./logo/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./logo/favicon.png"
+    },
+    "description": "",
+    "extra": {
+      "eas": {
+        "projectId": "a8653231-8fcd-4c01-9fea-e562b742f3e5"
+      }
+    },
+    "owner": "qwikit.ca"
+  }
+}
+
+
