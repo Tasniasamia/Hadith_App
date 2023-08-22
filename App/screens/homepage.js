@@ -46,13 +46,13 @@ function Homepage({navigation,route}) {
 <SafeAreaView style={{flex:1,flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
                 {/* one Category of Hadith */}
              
-                <View style={{backgroundColor:"white",width:300,marginVertical:5}}>
+                <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}}>
         {/* part-1 */}
 
 <View style={{flexDirection:"row",alignItems:"stretch"}}>
     {/* part-1-(Hadith Logo) */}
     <View style={{marginHorizontal:10,marginTop:12}}>
-<Image style={{ width: 50, height: 50 }}  source={require('../assets/Hadith_logo.png')}/>
+<Image style={{ width: 80, height: 80 }}  source={require('../assets/Hadith_logo.png')}/>
     </View>
         {/* part-1-(Hadith_Category_Details) */}
 
@@ -63,24 +63,24 @@ function Homepage({navigation,route}) {
   <Ionicons name="stats-chart" size={20} color="gray" />
   <Text style={{paddingHorizontal:10}}>  323/586</Text>
 </Text>
-<View style={{flexDirection:"row",paddingVertical:10}}>
-              <Ionicons name="star-sharp" size={20} color="gray" />
-                <Text>  492 / 61</Text>
-                </View>  
+  
                 </View>
     </View>
 
 
-</View>
+
                 
                 
                 
       {/* part-2           */}
                 
                 
-           
+      <View style={{flexDirection:"row",paddingVertical:10,marginLeft:13}}>
+              <Ionicons name="star-sharp" size={20} color="gray" />
+                <Text>  492 / 61</Text>
+                </View>
 
-          
+                </View>
                
 
 
