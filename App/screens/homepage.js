@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../config/colors';
 
 function Homepage({navigation,route}) {
+    const screenWidth = Dimensions.get('window').height;
 
     const [lan,setLan] = useState(true) // false = bangla , true = eng
 
@@ -14,7 +15,7 @@ function Homepage({navigation,route}) {
 
     } , []);
 
-
+const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
    
     return (
@@ -43,7 +44,7 @@ function Homepage({navigation,route}) {
                 
                 />
 
-<ScrollView  contentContainerStyle={{flex:1,flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+<ScrollView showsVerticalScrollIndicator={false} onScroll={Animated.event([{nativeEvent:{contentOffset:{y: scrollOffsetY}}}],{useNativeDriver:false})} contentContainerStyle={{flex:1,flexDirection:"column",alignItems:"center",justifyContent:"center",height:screenWidth}}>
                 {/* one Category of Hadith */}
              
                 <View style={{backgroundColor:"white",width:300,marginVertical:5,flexDirection:"column"}} >

@@ -1,5 +1,7 @@
 import React from 'react';
 import {View,Text, ScrollView, Image,Dimensions, StyleSheet} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Hadith_Chapter =() => {
     const screenWidth = Dimensions.get('window').width;
@@ -8,6 +10,8 @@ const Hadith_Chapter =() => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
+          backgroundColor:"#dbdbda" ,
+          marginBottom: 5
         },
         image: {
           width: screenWidth - 10,
@@ -25,7 +29,9 @@ const Hadith_Chapter =() => {
       });
     return (
         
-        <ScrollView contentContainerStyle={{ marginHorizontal: 5, marginTop: 25,backgroundColor:"#dbdbda" }}>
+        <ScrollView contentContainerStyle={{ marginHorizontal: 5, marginTop: 25}}>
+
+            {/* Banner */}
              <View style={styles.container}>
       <Image
         source={require("../assets/hadith_name.png")}
@@ -34,7 +40,41 @@ const Hadith_Chapter =() => {
       />
       <Text style={styles.text}>Hadith</Text>
     </View>
-        {/* Other content */}
+    <SafeAreaView >
+        <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,padding:20}}>
+        <View  style={{flex:60,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}>
+<Text style={{fontSize:18,marginRight:4,color:"gray"}}>1.</Text>
+<Text style={{fontSize:18,color:"gray"}}>The Number of Hadith</Text>
+        </View>
+
+        <View style={{flex:40,alignItems:"flex-end"}}><Text> <Ionicons name="chevron-forward-outline" size={20} color="gray" /></Text></View>
+
+        </View>
+        <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,padding:20}}>
+        <View  style={{flex:60,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}>
+<Text style={{fontSize:18,marginRight:4,color:"gray"}}>1.</Text>
+<Text style={{fontSize:18,color:"gray"}}>The Number of Hadith</Text>
+        </View>
+
+        <View style={{flex:40,alignItems:"flex-end"}}><Text> <Ionicons name="chevron-forward-outline" size={20} color="gray" /></Text></View>
+
+        </View>
+        
+        <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,padding:20}}>
+        <View  style={{flex:60,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}>
+<Text style={{fontSize:18,marginRight:4,color:"gray"}}>1.</Text>
+<Text style={{fontSize:18,color:"gray"}}>The Number of Hadith</Text>
+        </View>
+
+        <View style={{flex:40,alignItems:"flex-end"}}><Text> <Ionicons name="chevron-forward-outline" size={20} color="gray" /></Text></View>
+
+        </View>
+
+
+
+
+    </SafeAreaView>
+      
       </ScrollView>
     );
 };
