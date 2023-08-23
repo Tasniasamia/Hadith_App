@@ -76,7 +76,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
     });
 
     const Header_Max_Height = 200;
-    const Header_Min_Height = 70;
+    const Header_Min_Height = 170;
     const scrollOffsetY = useRef(new Animated.Value(0)).current;
     const Scroll_Distance = Header_Max_Height - Header_Min_Height;
     const animatedHeaderHeight = scrollOffsetY.interpolate({
@@ -97,7 +97,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
 
     
     <SafeAreaView   style={{ marginHorizontal: 5, marginTop: 60}}>
-         <Animated.View 
+         <Animated.View
         style={[
           styles.container,
           {
@@ -112,13 +112,15 @@ const Hadith_Chapter = ({ navigation, route }) => {
         resizeMode="contain"
       />
       <Text style={styles.text}>{name}</Text>
-    </Animated.View >
+    </Animated.View>
 
-    <ScrollView  scrollEventThrottle={16}
+    <ScrollView 
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
           { useNativeDriver: false }
-        )}>
+        )}
+        
+        >
       {chapter.map((index,index2) => (
         <View key={index.id}>
       
