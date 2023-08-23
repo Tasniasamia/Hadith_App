@@ -59,7 +59,7 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
 {Hadith.map(index=>
                 <View style={{backgroundColor:"white",width:350,marginVertical:5,flexDirection:"column"}} key={index.id}>
-                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter")}>
+                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter", { name:index.name })}>
         {/* part-1 */}
 
 <View style={{flexDirection:"row",alignItems:"stretch"}}>
