@@ -21,27 +21,27 @@ export const SahihalBukhari =[
       },
       {
         id: 5,
-        book: "Ghusl (Washing of the Whole Body)",
+        book: "Ghusl ",
         hadithRange: "248-293"
       },
       {
         id: 6,
-        book: "Menses (Menstrual Periods)",
+        book: "Menses ",
         hadithRange: "294-333"
       },
       {
         id: 7,
-        book: "Tayammum (Rubbing Hands and Feet with Dust)",
+        book: "Tayammum ",
         hadithRange: "334-348"
       },
       {
         id: 8,
-        book: "As-Salat (The Prayer)",
+        book: "As-Salat ",
         hadithRange: "349-520"
       },
       {
         id: 9,
-        book: "Times of As-Salat (The Prayers) and Its Superiority",
+        book: "Times of As-Salat ",
         hadithRange: "521-602"
       },
       {
@@ -61,7 +61,7 @@ export const SahihalBukhari =[
       },
       {
         id: 13,
-        book: "The Two Eids (Prayers and Festivals)",
+        book: "The Two Eids ",
         hadithRange: "948-989"
       },
       {
@@ -71,7 +71,7 @@ export const SahihalBukhari =[
       },
       {
         id: 15,
-        book: "Invoking Allah for Rain (Istisqaa)",
+        book: "Invoking Allah for Rain ",
         hadithRange: "1005-1039"
       },
       {
@@ -86,7 +86,7 @@ export const SahihalBukhari =[
       },
       {
         id: 18,
-        book: "Shortening the Prayers (At-Taqseer)",
+        book: " At-Taqseer",
         hadithRange: "1080-1119"
       },
       {
@@ -96,7 +96,7 @@ export const SahihalBukhari =[
       },
       {
         id: 20,
-        book: "Virtues of Prayer at Masjid Makkah and Madinah",
+        book: "Virtues of Prayer at Makkah and Madinah",
         hadithRange: "1188-1197"
       },
       {
@@ -151,17 +151,17 @@ export const SahihalBukhari =[
       },
       {
         id: 31,
-        book: "Praying at Night in Ramadaan (Taraweeh)",
+        book: "Taraweeh",
         hadithRange: "2008-2013"
       },
       {
         id: 32,
-        book: "Virtues of the Night of Qadr",
+        book: " The Night  Qadr",
         hadithRange: "2014-2024"
       },
       {
         id: 33,
-        book: "Retiring to a Mosque for Remembrance of Allah (I'tikaf)",
+        book: "I'tikaf",
         hadithRange: "2025-2046"
       },
       {
@@ -171,7 +171,7 @@ export const SahihalBukhari =[
       },
       {
         id: 35,
-        book: "Sales in which a Price is paid for Goods to be Delivered Later (As-Salam)",
+        book: "As-Salam",
         hadithRange: "2239-2256"
       },
       {
@@ -186,7 +186,7 @@ export const SahihalBukhari =[
       },
       {
         id: 38,
-        book: "Transferance of a Debt from One Person to Another (Al-Hawaala)",
+        book: "Al-Hawaala",
         hadithRange: "2287-2289"
       },
       {
@@ -196,7 +196,7 @@ export const SahihalBukhari =[
       },
       {
         id: 40,
-        book: "Representation, Authorization, Business by Proxy",
+        book: "Representation, Authorization by Proxy",
         hadithRange: "2299-2319"
       },
       {
@@ -221,7 +221,7 @@ export const SahihalBukhari =[
       },
       {
         id: 45,
-        book: "Lost Things Picked up by Someone (Luqatah)",
+        book: "Luqatah",
         hadithRange: "2426-2439"
       },
       {
@@ -276,12 +276,12 @@ export const SahihalBukhari =[
       },
       {
         id: 56,
-        book: "Fighting for the Cause of Allah (Jihaad)",
+        book: "Jihaad",
         hadithRange: "2782-3090"
       },
       {
         id: 57,
-        book: "One-fifth of Booty to the Cause of Allah (Khumus)",
+        book: "Khumus",
         hadithRange: "3091-3155"
       },
       {
@@ -301,7 +301,7 @@ export const SahihalBukhari =[
       },
       {
         id: 61,
-        book: "Virtues and Merits of the Prophet (pbuh) and his Companions",
+        book: "Virtues and Merits of the Prophet (pbuh)",
         hadithRange: "3489-3648"
       },
       {
@@ -311,17 +311,17 @@ export const SahihalBukhari =[
       },
       {
         id: 63,
-        book: "Merits of the Helpers in Madinah (Ansaar)",
+        book: "Ansaar",
         hadithRange: "3776-3948"
       },
       {
         id: 64,
-        book: "Military Expeditions led by the Prophet (pbuh) (Al-Maghaazi)",
+        book: " (pbuh) (Al-Maghaazi)",
         hadithRange: "3949-4473"
       },
       {
         id: 65,
-        book: "Prophetic Commentary on the Qur'an (Tafseer of the Prophet (pbuh))",
+        book: "Tafseer of the Prophet (pbuh)",
         hadithRange: "4474-4977"
       },
       {
@@ -351,7 +351,7 @@ export const SahihalBukhari =[
       },
       {
         id: 71,
-        book: "Sacrifice on Occasion of Birth (`Aqiqa)",
+        book: "Aqiqa",
         hadithRange: "5467-5474"
       },
       {
@@ -401,7 +401,7 @@ export const SahihalBukhari =[
       },
       {
         id: 81,
-        book: "To make the Heart Tender (Ar-Riqaq)",
+        book: "Ar-Riqaq",
         hadithRange: "6412-6593"
       },
       {
@@ -421,12 +421,12 @@ export const SahihalBukhari =[
       },
       {
         id: 85,
-        book: "Laws of Inheritance (Al-Faraa'id)",
+        book: "Al-Faraa'id",
         hadithRange: "6723-6771"
       },
       {
         id: 86,
-        book: "Limits and Punishments set by Allah (Hudood)",
+        book: "Hudood",
         hadithRange: "6772-6801"
       },
       {
@@ -441,7 +441,7 @@ export const SahihalBukhari =[
       },
       {
         id: 89,
-        book: "(Statements made under) Coercion",
+        book: " Coercion",
         hadithRange: "6918-6939"
       },
       {
@@ -471,7 +471,7 @@ export const SahihalBukhari =[
       },
       {
         id: 95,
-        book: "Accepting Information Given by a Truthful Person",
+        book: "Given by Truthful Person Information",
         hadithRange: "7226-7245"
       },
       {
@@ -481,7 +481,7 @@ export const SahihalBukhari =[
       },
       {
         id: 97,
-        book: "Oneness, Uniqueness of Allah (Tawheed)",
+        book: "Tawheed",
         hadithRange: "7268-7370"
       },
 
