@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import {
   View,
   Text,
@@ -6,11 +6,12 @@ import {
   Image,
   Dimensions,
   StyleSheet,
+  Animated,
   TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { SahihalBukhari, SahihMuslim } from '../../hadith_book_data';
+import { SahihalBukhari, SahihMuslim,SunanNasai,Sahih_Abi_Daud,Jamih_Tirmidhi,subh_ibne_majah  } from '../../hadith_book_data';
 
 const Hadith_Chapter = ({ navigation, route }) => {
   const [chapter, setChapter] = useState([]);
@@ -25,6 +26,28 @@ const Hadith_Chapter = ({ navigation, route }) => {
       console.log("Hadith_Data");
     
     }
+    else if(name == "Sahih Muslim"){
+      setChapter(SahihMuslim);
+      console.log("SahihMuslim");
+    }
+    else if(name == "Sunan an-Nasa'i"){
+      setChapter(SunanNasai);
+      console.log("Sunan an-Nasa'i");
+    }
+    else if(name == "Sunan Abi Dawud"){
+      setChapter(Sahih_Abi_Daud);
+      console.log("Sunan Abi Dawud")
+    }
+    else if(name == "Jami` at-Tirmidhi"){
+      setChapter(Jamih_Tirmidhi);
+      console.log("Jamih_Tirmidhi");
+    }
+    else if(name == "Sunan Ibn Majah"){
+      setChapter(subh_ibne_majah );
+      console.log("subh_ibne_majah ");
+    }
+
+
   });
 
   const screenWidth = Dimensions.get('window').width;
@@ -35,10 +58,10 @@ const Hadith_Chapter = ({ navigation, route }) => {
         alignItems: 'center',
         backgroundColor:"#e2e1e1" ,
         
-     marginBottom:5
+     marginBottom:70
       },
       image: {
-        width: screenWidth - 10,
+        width: screenWidth ,
         height: undefined,
         aspectRatio: 3,
       },
@@ -46,29 +69,63 @@ const Hadith_Chapter = ({ navigation, route }) => {
         position: 'absolute',
         top: '50%', // Move the text to the vertical center of the image
         left: '50%', // Move the text to the horizontal center of the image
-        transform: [{ translateX: -30 }, { translateY: -10 }], // Adjust the translation to center the text
-        fontSize: 20,
+        transform: [{ translateX: -50 }, { translateY: -10 }], // Adjust the translation to center the text
+        fontSize: 14,
         fontWeight: 'bold',
       },
     });
 
+    const Header_Max_Height = 200;
+    const Header_Min_Height = 70;
+    const scrollOffsetY = useRef(new Animated.Value(0)).current;
+    const Scroll_Distance = Header_Max_Height - Header_Min_Height;
+    const animatedHeaderHeight = scrollOffsetY.interpolate({
+      inputRange: [0, Scroll_Distance],
+      outputRange: [Header_Max_Height, Header_Min_Height],
+      extrapolate: 'clamp',
+    });
+    const animateHeaderBackgroundColor = scrollOffsetY.interpolate({
+      inputRange: [0, Header_Max_Height - Header_Min_Height],
+      outputRange: ['blue', 'red'],
+      extrapolate: 'clamp',
+    });
+    // let scrollOffsetY = useRef(new Animated.Value(0)).current;  
+
+
+  
   return (
-    <ScrollView contentContainerStyle={{ marginHorizontal: 5, marginTop: 25 }}>
-         <View style={styles.container}>
+
+    
+    <SafeAreaView   style={{ marginHorizontal: 5, marginTop: 60}}>
+         <Animated.View 
+        style={[
+          styles.container,
+          {
+            height: animatedHeaderHeight,
+            backgroundColor: animateHeaderBackgroundColor
+          }
+
+        ]} >
       <Image
         source={require("../assets/hadith_name.png")}
         style={styles.image}
         resizeMode="contain"
       />
-      <Text style={styles.text}>Hadith</Text>
-    </View>
+      <Text style={styles.text}>{name}</Text>
+    </Animated.View >
+
+    <ScrollView  scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
+          { useNativeDriver: false }
+        )}>
       {chapter.map((index,index2) => (
         <View key={index.id}>
       
     <View >
         <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,paddingVertical:20,marginTop:0}}>
         {/* <View  style={{flex:80,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}> */}
-<Text style={{color:"gray",marginRight:2,flex:10}}>{index2+1}.</Text>
+<Text style={{color:"gray",flex:10,marginLeft:8}}>{index2+1}.</Text>
 <Text style={{fontSize:15,color:"gray",flex:60}}>{index.book}</Text>
         {/* </View> */}
 
@@ -104,7 +161,11 @@ const Hadith_Chapter = ({ navigation, route }) => {
          
         </View>
       ))}
-    </ScrollView>
+
+</ScrollView>
+
+
+    </SafeAreaView>
   );
 };
 
