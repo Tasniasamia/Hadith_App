@@ -1,9 +1,9 @@
 import React from 'react';
-import {View,Text, ScrollView, Image,Dimensions, StyleSheet} from 'react-native';
+import {View,Text, ScrollView, Image,Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Hadith_Chapter =() => {
+const Hadith_Chapter =({navigation}) => {
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -48,7 +48,7 @@ const Hadith_Chapter =() => {
 <Text style={{fontSize:18,color:"gray"}}>The Number of Hadith</Text>
         </View>
 
-        <View style={{flex:40,alignItems:"flex-end"}}><Text> <Ionicons name="chevron-forward-outline" size={20} color="gray" /></Text></View>
+        <View style={{flex:40,alignItems:"flex-end"}}><Text> <TouchableOpacity ><Ionicons onPress={()=>{navigation.navigate("Chapter_Details")}} name="chevron-forward-outline" size={20} color="gray" /></TouchableOpacity></Text></View>
 
         </View>
         <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,padding:20}}>

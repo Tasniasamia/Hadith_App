@@ -28,8 +28,9 @@ import Firstslider from '../App/screens/firstslide';
 import Secondslide from '../App/screens/secondslide';
 import Thirdslide from '../App/screens/thirdslide';
 import CustomSidebarMenu from '../App/screens/CustomSidebarMenu';
-import Main from '../App/screens/Main';
 import Hadith_Chapter from '../App/screens/Hadith_Chapter';
+import Chapeter_Details from '../App/screens/Chapeter_Details';
+import BookMark from '../App/screens/Bookmark';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -130,12 +131,14 @@ const RootStack = ({navigation}) => {
                                         paddingLeft: 20
                                     }
                                 }}
-                                initialRouteName="Hadith_Chapter"
+                                initialRouteName="Homepage"
                                 >
 
 
                                         <Stack.Screen name="Homepage" component={Homepage} />
                                         <Stack.Screen name="Hadith_Chapter" component={Hadith_Chapter} />
+                                        <Stack.Screen name="Chapter_Details" component={Chapeter_Details} />
+                                        <Stack.Screen name="Bookmark" component={BookMark} />
 
                                         {/* Write your code here */}
        
