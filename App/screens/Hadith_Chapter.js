@@ -53,12 +53,12 @@ const Hadith_Chapter = ({ navigation, route }) => {
   const screenWidth = Dimensions.get('window').width;
   const styles = StyleSheet.create({
       container: {
-        flex: 1,
+
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor:"#e2e1e1" ,
         
-     marginBottom:70
+     
       },
       image: {
         width: screenWidth ,
@@ -75,8 +75,8 @@ const Hadith_Chapter = ({ navigation, route }) => {
       },
     });
 
-    const Header_Max_Height = 200;
-    const Header_Min_Height = 170;
+    const Header_Max_Height = 110;
+    const Header_Min_Height = 100;
     const scrollOffsetY = useRef(new Animated.Value(0)).current;
     const Scroll_Distance = Header_Max_Height - Header_Min_Height;
     const animatedHeaderHeight = scrollOffsetY.interpolate({
@@ -86,7 +86,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
     });
     const animateHeaderBackgroundColor = scrollOffsetY.interpolate({
       inputRange: [0, Header_Max_Height - Header_Min_Height],
-      outputRange: ['blue', 'red'],
+      outputRange: ['#dfedd0', '#3c9329'],
       extrapolate: 'clamp',
     });
     // let scrollOffsetY = useRef(new Animated.Value(0)).current;  
@@ -96,7 +96,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
   return (
 
     
-    <SafeAreaView   style={{ marginHorizontal: 5, marginTop: 60}}>
+    <SafeAreaView   style={{ marginHorizontal: 5,}}>
          <Animated.View
         style={[
           styles.container,
