@@ -10,7 +10,7 @@ const BookMark =() => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor:"#dbdbda" ,
+          backgroundColor:"#e2e1e1" ,
           
        marginBottom:5
         },
@@ -29,7 +29,7 @@ const BookMark =() => {
         },
       });
     return (
-        <View >
+        <SafeAreaView  style={{ marginHorizontal: 5, marginTop: 60}}>
               <View style={styles.container}>
       <Image
         source={require("../assets/hadith_name.png")}
@@ -38,7 +38,24 @@ const BookMark =() => {
       />
       <Text style={styles.text}>Hadith</Text>
     </View>
+
+    <ScrollView contentContainerStyle={{marginTop:50,backgroundColor:"#dfeccd"}} >
+        <View style={{backgroundColor:"#ecf4e3",marginVertical:10,marginHorizontal:10,paddingVertical:10,paddingHorizontal:10}}>
+            <View style={{flexDirection:"row",justifyContent:"space-between"}}><Text style={{fontSize:20,color:"green",fontWeight:"bold"}}>Book 30 , Hadith 3536</Text>
+          <Text> <Text ><Ionicons name="bookmark-sharp" size={20} color="gray"  style={{fontSize:20,paddingVertical:5,color:"green",fontWeight:"bold"}}/></Text>
+            <Text>   <Ionicons name="share-social-sharp" size={20} color="gray" style={{fontSize:20,paddingVertical:5,color:"green",fontWeight:"bold"}}/></Text>
+            </Text> 
+            </View>
+<View>
+    <Text style={{paddingVertical:15}}>Narrated It was narrated that Abu Hurairah said : </Text>
+    <Text>: "Whoever does not thank people, does not thank Allah."</Text>
+</View>
         </View>
+
+    </ScrollView>
+        </SafeAreaView>
+
+
     );
 };
 
