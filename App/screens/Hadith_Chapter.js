@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SahihalBukhari, SahihMuslim,SunanNasai,Sahih_Abi_Daud,Jamih_Tirmidhi,subh_ibne_majah  } from '../../hadith_book_data';
+import TopNavbar from './TopNavbar';
 
 const Hadith_Chapter = ({ navigation, route }) => {
   const [chapter, setChapter] = useState([]);
@@ -85,8 +86,8 @@ const Hadith_Chapter = ({ navigation, route }) => {
       extrapolate: 'clamp',
     });
     const animateHeaderBackgroundColor = scrollOffsetY.interpolate({
-      inputRange: [0, Header_Max_Height - Header_Min_Height],
-      outputRange: ['#dfedd0', '#3c9329'],
+      inputRange: [0, Scroll_Distance],
+      outputRange: ['#d1e7f8','#dfedd0'],
       extrapolate: 'clamp',
     });
     // let scrollOffsetY = useRef(new Animated.Value(0)).current;  
@@ -94,6 +95,12 @@ const Hadith_Chapter = ({ navigation, route }) => {
 
   
   return (
+<>
+
+
+
+<TopNavbar/>
+
 
     
     <SafeAreaView   style={{ marginHorizontal: 5,}}>
@@ -167,7 +174,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
 </ScrollView>
 
 
-    </SafeAreaView>
+    </SafeAreaView></>
   );
 };
 

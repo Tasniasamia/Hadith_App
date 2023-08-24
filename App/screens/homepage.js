@@ -3,6 +3,7 @@ import {FlatList,ScrollView,ActivityIndicator,Animated, Dimensions ,StyleSheet, 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Hadith_Data from '../../Hadith_Category.json'
 import colors from '../config/colors';
+import TopNavbar from './TopNavbar';
 
 function Homepage({navigation,route}) {
     const screenWidth = Dimensions.get('window').height;
@@ -22,8 +23,31 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
    
     return (
-        <SafeAreaView style={{width:'100%',height:'100%'}}>
+        <>
+             <TopNavbar/>  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <SafeAreaView style={{width:'100%',height:'100%'}}>
         <View style={[styles.navbar,{flexDirection:'row'}]}>   
           
                 <Pressable style={{ width: '5%', height: 25,left:10,top:15}} >
@@ -155,6 +179,7 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 </View>
 
     </SafeAreaView>
+    </>
     );
 }
 

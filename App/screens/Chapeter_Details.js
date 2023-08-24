@@ -3,6 +3,7 @@ import React from 'react';
 import {View,Text, ScrollView, Image,Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import TopNavbar from './TopNavbar';
 const Chapeter_Details =({navigation}) => {
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
@@ -29,6 +30,8 @@ const Chapeter_Details =({navigation}) => {
         },
       });
     return (
+        <>
+        <TopNavbar/>
         <SafeAreaView  style={{ marginHorizontal: 5, marginTop: 60}}>
               <View style={styles.container}>
       <Image
@@ -62,7 +65,7 @@ const Chapeter_Details =({navigation}) => {
 
     </ScrollView>
         </SafeAreaView>
-
+        </>
 
     );
 };

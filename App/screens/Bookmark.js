@@ -3,6 +3,7 @@ import React from 'react';
 import {View,Text, ScrollView, Image,Dimensions, StyleSheet} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import TopNavbar from './TopNavbar';
 const BookMark =() => {
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
@@ -29,6 +30,8 @@ const BookMark =() => {
         },
       });
     return (
+        <>
+        <TopNavbar/>
         <SafeAreaView  style={{ marginHorizontal: 5, marginTop: 60}}>
               <View style={styles.container}>
       <Image
@@ -55,7 +58,7 @@ const BookMark =() => {
     </ScrollView>
         </SafeAreaView>
 
-
+        </>
     );
 };
 

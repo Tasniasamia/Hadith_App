@@ -7,7 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 //Credentials-Context
 import { CredentialsContext } from '../components/CredintailsContext';
 
@@ -31,6 +31,7 @@ import CustomSidebarMenu from '../App/screens/CustomSidebarMenu';
 import Hadith_Chapter from '../App/screens/Hadith_Chapter';
 import Chapeter_Details from '../App/screens/Chapeter_Details';
 import BookMark from '../App/screens/Bookmark';
+import TopNavbar from '../App/screens/TopNavbar';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,8 +68,16 @@ const Drawer = createDrawerNavigator();
 //     );
 //   };
 
+
 const RootStack = ({navigation}) => {
     return(
+        <>
+        
+        {/* <NavigationContainer> */}
+      
+       
+       
+
         <WellcomeContext.Consumer>
             {({storeWellcome}) => (
                 <>
@@ -85,7 +94,7 @@ const RootStack = ({navigation}) => {
                             
                                 {storeCredentials ? (
                                     <>
-                                
+                                 
 
                                     {/* <Drawer.Navigator
                                                 options={{unmountOnBlur:true,lazy:true,drawerIcon:{ focused: true, color: 'black', size: 41 }}}
@@ -116,14 +125,15 @@ const RootStack = ({navigation}) => {
                                     </>
                                 ) : (
                                     <>
+                                    
 
-
-                                  <Stack.Navigator
+                                     <Stack.Navigator
                                   
                                   screenOptions={{
                                     headerStyle:{
                                         backgroundColor: "transparent"
                                     },
+                                    headerShown:false,
                                     headerTintColor: "#F0F0EE",
                                     headerTitle:"",
                                     headerTransparent:true,
@@ -139,7 +149,7 @@ const RootStack = ({navigation}) => {
                                         <Stack.Screen name="Hadith_Chapter" component={Hadith_Chapter} />
                                         <Stack.Screen name="Chapter_Details" component={Chapeter_Details} />
                                         <Stack.Screen name="Bookmark" component={BookMark} />
-
+                                        <Stack.Screen name="Top"component={TopNavbar}/>
                                         {/* Write your code here */}
        
                                         
@@ -151,7 +161,7 @@ const RootStack = ({navigation}) => {
                             }
                                 
                             
-                            
+                                
               
                         </NavigationContainer>
                         )}
@@ -211,6 +221,10 @@ const RootStack = ({navigation}) => {
             
             
         </WellcomeContext.Consumer>
+
+        {/* </NavigationContainer> */}
+
+        </>
 
     )
 }
