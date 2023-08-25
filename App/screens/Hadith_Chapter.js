@@ -99,7 +99,6 @@ const Hadith_Chapter = ({ navigation, route }) => {
 
 
 
-<TopNavbar/>
 
 
     
@@ -138,7 +137,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
 <Text style={{fontSize:15,color:"gray",flex:60}}>{index.book}</Text>
         {/* </View> */}
 
-        <View style={{flex:20,textAlign:"right"}}><Text> <TouchableOpacity onPress={()=>{navigation.navigate("Chapter_Details")}}>
+        <View style={{flex:20,textAlign:"right"}}><Text> <TouchableOpacity onPress={()=>{navigation.navigate("Chapter_Details",{ page:index.hadithRange })}}>
           <Text> {index.hadithRange}</Text>
          </TouchableOpacity></Text></View>
 

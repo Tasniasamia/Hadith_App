@@ -149,7 +149,7 @@ const RootStack = ({navigation}) => {
                                         <Stack.Screen name="Hadith_Chapter" component={Hadith_Chapter} />
                                         <Stack.Screen name="Chapter_Details" component={Chapeter_Details} />
                                         <Stack.Screen name="Bookmark" component={BookMark} />
-                                        <Stack.Screen name="Top"component={TopNavbar}/>
+                                        {/* <Stack.Screen name="Homepage" component={TopNavbar} /> */}
                                         {/* Write your code here */}
        
                                         

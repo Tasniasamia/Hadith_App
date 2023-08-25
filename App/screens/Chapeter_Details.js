@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {View,Text, ScrollView, Image,Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import TopNavbar from './TopNavbar';
-const Chapeter_Details =({navigation}) => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const Chapeter_Details =({navigation,route}) => {
+    const[pagesdata,setPagesdata]=useState([])
+    const { page } = route.params;
+    const pageData={id:1,name:"Book 30 , Hadith 3536",narrate:"Narrated It was narrated that Abu Hurairah said ",text:"Whoever does not thank people, does not thank Allah.",page:page}
+    // useEffect(() => {
+
+    //     if (page) {
+            
+    //       setChapter(SahihalBukhari);
+    //       console.log("Hadith_Data");
+        
+    //     }
+      
+    
+    
+    //   });
+    const bookmark=async()=>{
+        try {
+            const asyncData = await AsyncStorage.getItem("StoreData");
+            const existingData = asyncData ? JSON.parse(asyncData) : [];
+    
+            const existData = existingData.find(index => index.page == page);
+            
+            if (!existData) {
+                existingData.push(pageData); // Push the new data into the array
+                await AsyncStorage.setItem("StoreData", JSON.stringify(existingData)); // Save the updated array
+                console.log("Data added to AsyncStorage:", existingData);
+            } else {
+                console.log("Data already exists in AsyncStorage:", existingData);
+            }
+        } catch (error) {
+            console.error("Error adding data to AsyncStorage:", error);
+        }
+    }
+    
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -29,9 +64,11 @@ const Chapeter_Details =({navigation}) => {
           fontWeight: 'bold',
         },
       });
+      const removeitem=async()=>{
+        console.log(await AsyncStorage.removeItem("StoreData"))
+      }
     return (
         <>
-        <TopNavbar/>
         <SafeAreaView  style={{ marginHorizontal: 5, marginTop: 60}}>
               <View style={styles.container}>
       <Image
@@ -49,10 +86,10 @@ const Chapeter_Details =({navigation}) => {
     Book 30 , Hadith 3536
   </Text>
   <View style={{ flexDirection: "row" }}>
-    <TouchableOpacity onPress={() => { navigation.navigate("Bookmark"); }}>
+    <TouchableOpacity onPress={bookmark}>
       <Ionicons name="bookmark-outline" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
-    <TouchableOpacity style={{marginLeft:10}}>
+    <TouchableOpacity style={{marginLeft:10}} onPress={removeitem}>
         <Ionicons name="share-social-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
   </View>

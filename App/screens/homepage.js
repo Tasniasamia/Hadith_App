@@ -18,14 +18,79 @@ function Homepage({navigation,route}) {
     useEffect(()=>{
        setHadith(Hadith_Data )
     },[])
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+          
+          headerRight: () => (
+            
+            <>
+            <StatusBar
+                animated={true}
+                backgroundColor="green"
+                height={300}
+  
+                // barStyle={statusBarStyle}
+               
+            />
+            <View style={[styles.navbar1]}>
+            
+                    
+            <View style={{width:'100%',height:30,top:8,flexDirection:'row',justifyContent:'flex-end',paddingRight:20}} >
 
+                        <Pressable style={{ width: 22, height: 22,right:15}} onPress={()=> navigation.navigate("Bookmark",{reminder:true})} >
+                        <Ionicons name="stats-chart" size={40} color="gray" />
+
+                        </Pressable>
+
+                        <Pressable style={{ width: 22, height: 22,right:0}} onPress={()=> navigation.navigate("Bookmark",{})} >
+                        <Ionicons name="stats-chart" size={40} color="gray" />
+
+                        </Pressable>
+
+                        <Pressable style={{ width: 22, height: 22,right:0}} onPress={()=> navigation.navigate("Bookmark",{})} >
+                        <Ionicons name="stats-chart" size={40} color="gray" />
+
+                        </Pressable>
+        
+                    </View>
+
+            </View>
+            
+            </>
+          ),
+        });
+      }, [navigation]);
 const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
    
     return (
         <>
-             <TopNavbar/>  
+           
+             {/* <SafeAreaView style={{width:'100%',height:'100%'}}>
+        <View style={[styles.navbar,{flexDirection:'row'}]}>   
+         
+               <Pressable activeOpacity={4} style={{ width: '5%', height: 25,left:15,top:17,borderWidth:0}} >
+                              
+                <Image
+                                    style={{ width: 17, height: 17,left:0,top:3}}
+                                    resizeMode='contain'
+                                    source={require('../assets/2star.jpg')}
+                                />
 
+               </Pressable>
+
+               <View style={{width:'50%',justifyContent:'flex-start',alignItems:'flex-start',left:10}}>
+                              
+                   
+                   <Text style={{left:10,top:17,color:colors.black,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} onPress={() => console.log("HEllO")}>HOME</Text>                 
+               
+               </View>
+
+              
+
+           </View>
+
+</SafeAreaView> */}
 
 
 
@@ -67,6 +132,7 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
                 <StatusBar
                 animated={true}
                 backgroundColor="#f1f1f1"
+            
                 // barStyle={statusBarStyle}
                 
                 />
@@ -123,7 +189,7 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
            
                 </ScrollView>
 </View>
-        <View style={[styles.footerStyle]}>
+        {/* <View style={[styles.footerStyle]}>
 
 <View style={{width:'100%',height:69,justifyContent:'center',alignItems:'center',flexDirection:'row',backgroundColor:colors.white}}>
         
@@ -174,9 +240,9 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 </Pressable> */}
 
 
-
+{/* 
 </View>
-</View>
+</View> */} 
 
     </SafeAreaView>
     </>

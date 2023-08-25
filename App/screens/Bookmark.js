@@ -31,7 +31,6 @@ const BookMark =() => {
       });
     return (
         <>
-        <TopNavbar/>
         <SafeAreaView  style={{ marginHorizontal: 5, marginTop: 60}}>
               <View style={styles.container}>
       <Image
