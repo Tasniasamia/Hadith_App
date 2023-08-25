@@ -1,10 +1,46 @@
-import React from 'react';
-
-import {View,Text, ScrollView, Image,Dimensions, StyleSheet} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ScrollView, Image, Dimensions, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import TopNavbar from './TopNavbar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const BookMark =() => {
+    const [BookItem, setBookItem] = useState([]);
+
+    const bookmarkCollection = async () => {
+      try {
+        const StorageData = await AsyncStorage.getItem('StoreData');
+        const StorageDataParse = JSON.parse(StorageData);
+        setBookItem(StorageDataParse || []); // Use empty array as default if data is null
+      } catch (error) {
+        console.error("Error retrieving data from AsyncStorage:", error);
+      }
+    };
+  
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          await bookmarkCollection();
+        } catch (error) {
+          // Handle error here
+        }
+      }
+      fetchData();
+    }, []);
+    // const bookmarkCollection = async () => {
+    //     try {
+    //         const StorageData = await AsyncStorage.getItem('StoreData');
+    //         const StorageDataParse = JSON.parse(StorageData);
+    //         console.log("StorageDataParse:", StorageDataParse); // Log the retrieved data
+    //         let newArray = StorageDataParse; // You can directly assign since newArray and StorageDataParse are the same
+    //         setBookItem(newArray);
+    //     } catch (error) {
+    //         console.error("Error retrieving data from AsyncStorage:", error);
+    //     }
+    // };
+    console.log("AllBookmarkCollections",BookItem[0]);
+
+
+    
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -31,33 +67,26 @@ const BookMark =() => {
       });
     return (
         <>
-        <SafeAreaView  style={{ marginHorizontal: 5, marginTop: 60}}>
-              <View style={styles.container}>
-      <Image
-        source={require("../assets/hadith_name.png")}
-        style={styles.image}
-        resizeMode="contain"
-      />
-      <Text style={styles.text}>Hadith</Text>
-    </View>
-
-    <ScrollView contentContainerStyle={{marginTop:50,backgroundColor:"#dfeccd"}} >
-        <View style={{backgroundColor:"#ecf4e3",marginVertical:10,marginHorizontal:10,paddingVertical:10,paddingHorizontal:10}}>
-            <View style={{flexDirection:"row",justifyContent:"space-between"}}><Text style={{fontSize:20,color:"green",fontWeight:"bold"}}>Book 30 , Hadith 3536</Text>
-          <Text> <Text ><Ionicons name="bookmark-sharp" size={20} color="gray"  style={{fontSize:20,paddingVertical:5,color:"green",fontWeight:"bold"}}/></Text>
-            <Text>   <Ionicons name="share-social-sharp" size={20} color="gray" style={{fontSize:20,paddingVertical:5,color:"green",fontWeight:"bold"}}/></Text>
-            </Text> 
-            </View>
-<View>
-    <Text style={{paddingVertical:15}}>Narrated It was narrated that Abu Hurairah said : </Text>
-    <Text>: "Whoever does not thank people, does not thank Allah."</Text>
-</View>
-        </View>
-
-    </ScrollView>
+        <SafeAreaView style={{ marginHorizontal: 5, marginTop: 60 }}>
+          {/* Image and Text here */}
+          <ScrollView contentContainerStyle={{ marginTop: 50, backgroundColor: "#dfeccd" }}>
+            {/* Display BookItem */}
+            {BookItem.map((index, index2) => (
+              <View key={index2} style={styles.bookmarkItem}>
+                <View style={styles.header}>
+                  <Text style={styles.headerText}>{index.name}</Text>
+                  <View style={styles.icons}>
+                    <Ionicons name="bookmark-sharp" size={20} color="gray" style={styles.icon} />
+                    <Ionicons name="share-social-sharp" size={20} color="gray" style={styles.icon} />
+                  </View>
+                </View>
+                <Text style={styles.narrate}>{index.narrate}</Text>
+                <Text style={styles.text}>{index.text}</Text>
+              </View>
+            ))}
+          </ScrollView>
         </SafeAreaView>
-
-        </>
+      </>
     );
 };
 

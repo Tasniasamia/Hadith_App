@@ -89,7 +89,7 @@ const Chapeter_Details =({navigation,route}) => {
     <TouchableOpacity onPress={bookmark}>
       <Ionicons name="bookmark-outline" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
-    <TouchableOpacity style={{marginLeft:10}} onPress={removeitem}>
+    <TouchableOpacity style={{marginLeft:10}} onPress={()=>{navigation.navigate("Bookmark")}}>
         <Ionicons name="share-social-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
   </View>
