@@ -52,11 +52,12 @@ const BookMark =() => {
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor:"#e2e1e1" ,
-          height:50,
+          height:40,
+          marginBottom:48
         },
         image: {
-          width: screenWidth - 10,
-          height: undefined,
+          width: screenWidth ,
+          height: 120,
           aspectRatio: 3,
         },
         text: {
@@ -84,7 +85,7 @@ const BookMark =() => {
       />
       <Text style={styles.text}>Hadith</Text>
     </View>
-          <ScrollView contentContainerStyle={{ marginTop: 80, backgroundColor: "#dfeccd" }}>
+          <ScrollView contentContainerStyle={{  backgroundColor: "#dfeccd" }}>
             {/* Display BookItem */}
             {BookItem.map((index, index2) => (
               <View key={index2} style={{backgroundColor:"#ecf4e3",marginVertical:10,marginHorizontal:10,paddingVertical:10,paddingHorizontal:10}}>

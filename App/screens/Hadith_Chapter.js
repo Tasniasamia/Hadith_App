@@ -137,7 +137,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
 <Text style={{fontSize:15,color:"gray",flex:60}}>{index.book}</Text>
         {/* </View> */}
 
-        <View style={{flex:20,textAlign:"right"}}><Text> <TouchableOpacity onPress={()=>{navigation.navigate("Chapter_Details",{ page:index.hadithRange })}}>
+        <View style={{flex:20,textAlign:"right"}}><Text> <TouchableOpacity onPress={()=>{navigation.navigate("Chapter_Details",{ page:index.hadithRange,name:name ,book:index.book})}}>
           <Text> {index.hadithRange}</Text>
          </TouchableOpacity></Text></View>
 

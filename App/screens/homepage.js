@@ -26,34 +26,32 @@ function Homepage({navigation,route}) {
             <>
             <StatusBar
                 animated={true}
-                backgroundColor="green"
-                height={300}
-  
+                backgroundColor="blue"
+                height="100%"
+  marginBottom={30}
                 // barStyle={statusBarStyle}
                
             />
             <View style={[styles.navbar1]}>
             
                     
-            <View style={{width:'100%',height:30,top:8,flexDirection:'row',justifyContent:'flex-end',paddingRight:20}} >
 
-                        <Pressable style={{ width: 22, height: 22,right:15}} onPress={()=> navigation.navigate("Bookmark",{reminder:true})} >
-                        <Ionicons name="stats-chart" size={40} color="gray" />
 
-                        </Pressable>
+<View style={{ width: '100%', height: 30, top: 8, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 20 }} >
 
-                        <Pressable style={{ width: 22, height: 22,right:0}} onPress={()=> navigation.navigate("Bookmark",{})} >
-                        <Ionicons name="stats-chart" size={40} color="gray" />
+    <Pressable style={{ marginRight: 15 }} onPress={() => navigation.navigate("Bookmark", { reminder: true })} >
+        <Ionicons name="bookmark-sharp" size={30} color="green" />
+    </Pressable>
 
-                        </Pressable>
+    <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
+        <Ionicons name="bookmark-sharp" size={30} color="green" />
+    </Pressable>
 
-                        <Pressable style={{ width: 22, height: 22,right:0}} onPress={()=> navigation.navigate("Bookmark",{})} >
-                        <Ionicons name="stats-chart" size={40} color="gray" />
+    <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
+        <Ionicons name="bookmark-sharp" size={30} color="green" />
+    </Pressable>
 
-                        </Pressable>
-        
-                    </View>
-
+</View>
             </View>
             
             </>
@@ -132,6 +130,9 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
                 <StatusBar
                 animated={true}
                 backgroundColor="#f1f1f1"
+                // marginBottom={20}
+
+
             
                 // barStyle={statusBarStyle}
                 
@@ -323,13 +324,13 @@ const styles = StyleSheet.create({
 
 
     },
-    navbar1:{
-  
-        backgroundColor: colors.white,
-        width:'60%',
-        height:40,
-        left:50,
-    },
+   
+  navbar1: {
+    // backgroundColor: colors.white,
+    width: '60%',
+    height: 80, // Increase the height to your desired value, e.g., 50
+    left: 50,
+  },
 
     ImgContainer:{  
 
