@@ -27,9 +27,7 @@ const BookMark =() => {
       fetchData();
     }, []);
 
-    const removeFromBookmark=()=>{
-        
-    }
+  
     // const bookmarkCollection = async () => {
     //     try {
     //         const StorageData = await AsyncStorage.getItem('StoreData');
@@ -42,7 +40,16 @@ const BookMark =() => {
     //     }
     // };
     console.log("AllBookmarkCollections",BookItem[0]);
-
+    const deleteFromBookmark = async (id) => {
+        try {
+          const updatedBookmarks = BookItem.filter((item) => item.id !== id);
+          await AsyncStorage.setItem('bookmark', JSON.stringify(updatedBookmarks));
+          setBookItem(updatedBookmarks);
+          console.log("DeleteStoreData");
+        } catch (error) {
+          console.error("Error deleting data from AsyncStorage:", error);
+        }
+      };
 
     
     const screenWidth = Dimensions.get('window').width;
@@ -93,7 +100,7 @@ const BookMark =() => {
         <Text style={{ fontSize: 20, color: "green", fontWeight: "bold" }}>
 {index.book}</Text>
 <View style={{ flexDirection: "row" }}>
-    <TouchableOpacity >
+    <TouchableOpacity onPress={()=>deleteFromBookmark(index.id)}>
       <Ionicons name="bookmark-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
     <TouchableOpacity style={{marginLeft:10}} >
