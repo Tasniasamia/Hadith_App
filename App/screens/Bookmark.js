@@ -8,7 +8,7 @@ const BookMark =() => {
 
     const bookmarkCollection = async () => {
       try {
-        const StorageData = await AsyncStorage.getItem('StoreData');
+        const StorageData = await AsyncStorage.getItem('bookmark');
         const StorageDataParse = JSON.parse(StorageData);
         setBookItem(StorageDataParse || []); // Use empty array as default if data is null
       } catch (error) {
@@ -91,7 +91,7 @@ const BookMark =() => {
               <View key={index2} style={{backgroundColor:"#ecf4e3",marginVertical:10,marginHorizontal:10,paddingVertical:10,paddingHorizontal:10}}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ fontSize: 20, color: "green", fontWeight: "bold" }}>
-{index.name}</Text>
+{index.book}</Text>
 <View style={{ flexDirection: "row" }}>
     <TouchableOpacity >
       <Ionicons name="bookmark-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
@@ -101,8 +101,8 @@ const BookMark =() => {
     </TouchableOpacity>
   </View>
                 </View>
-                <Text >{index.narrate}</Text>
-                <Text >{index.text}</Text>
+                <Text >{index.narration}</Text>
+                <Text >{index.english_meaning}</Text>
               </View>
             ))}
           </ScrollView>
