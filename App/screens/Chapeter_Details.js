@@ -13,7 +13,7 @@ const Chapeter_Details =({navigation,route}) => {
     // const hadithChapterAll = SahihalBukhari.filter(
     //     (index) => index.category === name && index.page === page && index.book === book
     //   );
-    
+    console.log("name   page book", name ,  page , book)
     useEffect(() => {
         const hadithChapterAll = SahihalBukhari.filter(
             (index) => index.category === name && index.page === page && index.book === book
@@ -23,39 +23,102 @@ const Chapeter_Details =({navigation,route}) => {
     }, [name, page, book]);
 console.log("All_Hadith_description",pagesdata);
 
-const bookmark = async (id) => {
-     pagesdata.find((index) => {
-        if(index.id==id){
-            setBookmark({
-                id:index.id,
-                name:index.book,
-                narrate:index.narration,
-                text:index.english_meaning,
-                page:index.page
-            })
+const BOOKMARK_KEY ='bookmark';
+
+const setData = async (key, value)=>{
+   try {
+    const jsonData = JSON.stringify(value);
+    await AsyncStorage.setItem(key, jsonData);
+    return true;
+   } catch (error) {
+    return false;
+   }
+}
+
+const getData = async (key)=>{
+    try {
+        const res =await AsyncStorage.getItem(key);
+        return JSON.parse(res);
+    } catch (error) {
+        return null;
+    }
+}
+
+const bookmark = async(id)=>{
+    try {
+        // console.log({id});
+        // await setData(BOOKMARK_KEY, id);
+    //   await  AsyncStorage.clear()
+
+        const exData = await getData(BOOKMARK_KEY);
+
+        let newData = [];
+
+        console.log(2222,exData);
+        if (exData) {
+            newData = exData;
         }
-    });
+        const selectedHadith = pagesdata.find((index) => index.id === id);
 
-    
-        try {
-            const asyncData = await AsyncStorage.getItem("StoreData");
-            const existingData = asyncData ? JSON.parse(asyncData) : [];
+    const dataIsExit =newData.find(index=>index.page === selectedHadith.page)
+   if(dataIsExit){
+    return console.log("Data already exit");
+   }
 
-            const existData = existingData.find((index) => index.page === page);
+        
+        newData.push(selectedHadith);
 
-            if (!existData) {
-                existingData.push(bookmarked); // Push the new data into the array
-                await AsyncStorage.setItem("StoreData", JSON.stringify(existingData)); // Save the updated array
-                console.log("Data added to AsyncStorage:", existingData);
-            } else {
-                console.log("Data already exists in AsyncStorage:", existingData);
-            }
-        } catch (error) {
-            console.error("Error adding data to AsyncStorage:", error);
-        }
-    
-};
-    
+        await setData(BOOKMARK_KEY, newData);
+        console.log('Successfully Bookmarked');
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+// const bookmark = async (id) => {
+//     try {
+//       const selectedHadith = pagesdata.find((index) => index.id === id);
+//       console.log('Selected Hadith:', selectedHadith);
+  
+//       if (selectedHadith && selectedHadith.page !== null) {
+//         console.log('Selected Hadith page:', selectedHadith.page);
+  
+//         const asyncData = await AsyncStorage.getItem("StoreData");
+//         const existingData = asyncData ? JSON.parse(asyncData) : [];
+  
+//         const existDataIndex = existingData.findIndex((item) => item.page === selectedHadith.page);
+  
+//         if (existDataIndex === -1) {
+//           existingData.push({
+//             id: selectedHadith.id,
+//             name: selectedHadith.book,
+//             narrate: selectedHadith.narration,
+//             text: selectedHadith.english_meaning,
+//             page: selectedHadith.page,
+//           });
+  
+//           await AsyncStorage.setItem("StoreData", JSON.stringify(existingData));
+//           console.log("Data added to AsyncStorage:", existingData);
+//         } else {
+//           existingData[existDataIndex] = {
+//             ...existingData[existDataIndex],
+//             id: selectedHadith.id,
+//             name: selectedHadith.book,
+//             narrate: selectedHadith.narration,
+//             text: selectedHadith.english_meaning,
+//           };
+  
+//           await AsyncStorage.setItem("StoreData", JSON.stringify(existingData));
+//           console.log("Data updated in AsyncStorage:", existingData);
+//         }
+//       } else {
+//         console.log("Selected Hadith is null or has null page");
+//       }
+//     } catch (error) {
+//       console.error("Error adding/updating data to AsyncStorage:", error);
+//     }
+//   };
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -105,7 +168,7 @@ const bookmark = async (id) => {
                 <View style={{ flexDirection: "row" }}>
                   {/* ... (TouchableOpacity components) */}
                 </View><View style={{ flexDirection: "row" }}>
-    <TouchableOpacity onPress={()=>{bookmark(index.id)}}>
+    <TouchableOpacity onPress={()=>bookmark(index.id)}>
       <Ionicons name="bookmark-outline" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
     <TouchableOpacity style={{marginLeft:10}} onPress={()=>{navigation.navigate("Bookmark")}}>
