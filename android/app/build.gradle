@@ -115,11 +115,11 @@ android {
 
     namespace "com.hadis2023"
     defaultConfig {
-        applicationId "com.hadis2023"
+        applicationId 'com.qitca.hadis2023'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 10
+        versionName "1.0.0"
     }
 
     splits {

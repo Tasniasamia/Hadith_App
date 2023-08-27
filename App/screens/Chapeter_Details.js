@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
+// import { Share } from 'react-native';
 import {View,Text, ScrollView, Image,Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SahihalBukhari } from '../../hadith_Chapter.js';
+import { Share } from 'react-native';
 const Chapeter_Details =({navigation,route}) => {
     const[pagesdata,setPagesdata]=useState([])
     const[bookmarked,setBookmark]=useState(null);
@@ -74,8 +76,30 @@ const bookmark = async(id)=>{
         console.log(error)
     }
 }
-
-
+// Share Hadith
+// const SocialShareScreen = () => {
+//     onShare();
+    const onShare = async () => {
+        try {
+          const result = await Share.share({
+            message:
+            'https://play.google.com/store/apps/details?id=com.qitca.qwikmedic', // (pass your hadith text here)
+        
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+          Alert.alert(error.message);
+        }
+      };
+    // };
 // const bookmark = async (id) => {
 //     try {
 //       const selectedHadith = pagesdata.find((index) => index.id === id);
@@ -167,11 +191,17 @@ const bookmark = async(id)=>{
                 </Text>
                 <View style={{ flexDirection: "row" }}>
                   {/* ... (TouchableOpacity components) */}
-                </View><View style={{ flexDirection: "row" }}>
+                </View><View style={{ flexDirection: "row",alignItems:"center" }}>
+
+
+                <TouchableOpacity onPress={()=>navigation.navigate("Bookmark")}>
+      <Ionicons name="caret-forward-circle-outline" size={25} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold",marginRight:5 }} />
+    </TouchableOpacity>
+
     <TouchableOpacity onPress={()=>bookmark(index.id)}>
       <Ionicons name="bookmark-outline" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
-    <TouchableOpacity style={{marginLeft:10}} onPress={()=>{navigation.navigate("Bookmark")}}>
+    <TouchableOpacity style={{marginLeft:10}} onPress={onShare}>
         <Ionicons name="share-social-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
   </View>

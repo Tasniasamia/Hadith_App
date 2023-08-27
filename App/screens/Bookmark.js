@@ -3,7 +3,8 @@ import { View, Text, ScrollView, Image, Dimensions, StyleSheet, TouchableOpacity
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const BookMark =() => {
+import { Share } from 'react-native';
+const BookMark =({navigation}) => {
     const [BookItem, setBookItem] = useState([]);
 
     const bookmarkCollection = async () => {
@@ -50,8 +51,27 @@ const BookMark =() => {
           console.error("Error deleting data from AsyncStorage:", error);
         }
       };
-
+//  Social Share
+const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+        'https://play.google.com/store/apps/details?id=com.qitca.qwikmedic', // (pass your hadith text here)
     
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -100,10 +120,13 @@ const BookMark =() => {
         <Text style={{ fontSize: 20, color: "green", fontWeight: "bold" }}>
 {index.book}</Text>
 <View style={{ flexDirection: "row" }}>
+<TouchableOpacity onPress={()=>navigation.navigate("Homepage")}>
+      <Ionicons name="caret-forward-circle-outline" size={25} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold",marginRight:5 }} />
+    </TouchableOpacity>
     <TouchableOpacity onPress={()=>deleteFromBookmark(index.id)}>
       <Ionicons name="bookmark-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
-    <TouchableOpacity style={{marginLeft:10}} >
+    <TouchableOpacity style={{marginLeft:10}} onPress={onShare}>
         <Ionicons name="share-social-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
   </View>

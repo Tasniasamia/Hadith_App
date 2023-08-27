@@ -1,4 +1,4 @@
-package com.hadis2023;
+package com.qitca.hadis2023;
 
 import android.os.Build;
 import android.os.Bundle;
