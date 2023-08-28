@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // import { Share } from 'react-native';
-import {View,Text, ScrollView, Image,Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import {View,Text, ScrollView, Image,Dimensions, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -99,50 +99,17 @@ const bookmark = async(id)=>{
           Alert.alert(error.message);
         }
       };
-    // };
-// const bookmark = async (id) => {
-//     try {
-//       const selectedHadith = pagesdata.find((index) => index.id === id);
-//       console.log('Selected Hadith:', selectedHadith);
-  
-//       if (selectedHadith && selectedHadith.page !== null) {
-//         console.log('Selected Hadith page:', selectedHadith.page);
-  
-//         const asyncData = await AsyncStorage.getItem("StoreData");
-//         const existingData = asyncData ? JSON.parse(asyncData) : [];
-  
-//         const existDataIndex = existingData.findIndex((item) => item.page === selectedHadith.page);
-  
-//         if (existDataIndex === -1) {
-//           existingData.push({
-//             id: selectedHadith.id,
-//             name: selectedHadith.book,
-//             narrate: selectedHadith.narration,
-//             text: selectedHadith.english_meaning,
-//             page: selectedHadith.page,
-//           });
-  
-//           await AsyncStorage.setItem("StoreData", JSON.stringify(existingData));
-//           console.log("Data added to AsyncStorage:", existingData);
-//         } else {
-//           existingData[existDataIndex] = {
-//             ...existingData[existDataIndex],
-//             id: selectedHadith.id,
-//             name: selectedHadith.book,
-//             narrate: selectedHadith.narration,
-//             text: selectedHadith.english_meaning,
-//           };
-  
-//           await AsyncStorage.setItem("StoreData", JSON.stringify(existingData));
-//           console.log("Data updated in AsyncStorage:", existingData);
-//         }
-//       } else {
-//         console.log("Selected Hadith is null or has null page");
-//       }
-//     } catch (error) {
-//       console.error("Error adding/updating data to AsyncStorage:", error);
-//     }
-//   };
+
+//Modal Section
+const [isModalVisible, setModalVisible] = useState(false);
+
+const toggleModal = () => {
+  setModalVisible(!isModalVisible);
+};
+
+const [modal,setModal]=useState("english")
+
+   //CSS Style
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -166,6 +133,45 @@ const bookmark = async(id)=>{
           fontSize: 20,
           fontWeight: 'bold',
         },
+        modalContainer: {
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+        },
+        modalContent: {
+          backgroundColor: 'white',
+          width: '50%', // Customize the width as needed
+           // Customize the height as needed
+          borderRadius: 10,
+          padding: 20,
+          // alignItems: 'center',
+          padding:15,
+          elevation: 5,
+        },
+        closeButton: {
+          position: 'absolute',
+          top: -10,
+          right: -10,
+          backgroundColor:"green",
+          borderRadius:50,
+          height:30,
+          width:30,
+          alignItems:"center",
+          justifyContent:"center"
+
+        },
+        hoveredContainer: {
+          backgroundColor: 'white',
+        },
+        translate_text: {
+        padding:5,
+        },
+        textHover:{
+          backgroundColor:"green",
+          color:"white"
+        }
+        
       });
       const removeitem=async()=>{
         console.log(await AsyncStorage.removeItem("StoreData"))
@@ -193,7 +199,9 @@ const bookmark = async(id)=>{
                   {/* ... (TouchableOpacity components) */}
                 </View><View style={{ flexDirection: "row",alignItems:"center" }}>
 
-
+                <TouchableOpacity onPress={toggleModal}>
+                <Ionicons name="caret-forward-circle-outline" size={25} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold",marginRight:5 }} />
+      </TouchableOpacity>
                 <TouchableOpacity onPress={()=>navigation.navigate("Bookmark")}>
       <Ionicons name="caret-forward-circle-outline" size={25} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold",marginRight:5 }} />
     </TouchableOpacity>
@@ -208,11 +216,61 @@ const bookmark = async(id)=>{
               </View>
               <View>
                 <Text style={{ paddingVertical: 15 }}>{index.narration} </Text>
-                <Text>{index.english_meaning}</Text>
+                <Text> {
+    modal === "Bengali" ? index.bengali_meaning :
+    modal === "English" ? index.english_meaning :
+    modal === "Arabic" ? index.arabic_meaning :
+    modal === "Urdu" ? index.urdu_meaning :
+    index.english_meaning
+  }</Text>
               </View>
             </View>
           ))}
         </ScrollView>
+
+
+        {/* Translate Part */}
+        <View >
+    
+      
+        <Modal visible={isModalVisible} transparent={true} animationType="slide">
+        <View style={styles.modalContainer}>
+
+          <View style={styles.modalContent}>
+        <Text style={{textAlign:"center"}}>Languages</Text>
+
+
+        <TouchableOpacity  style={styles.translate_text} onPress={()=>{setModal("Bengali")}}>
+              <Text>Bengali</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("English")}}>
+              <Text>English</Text>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("Arabic")}}>
+              <Text >Arabic</Text>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("Urdu")}}>
+              <Text  >Urdu</Text>
+            </TouchableOpacity>
+
+
+
+
+            <View>
+
+            </View>
+            <TouchableOpacity onPress={toggleModal} style={styles.closeButton}>
+              <Ionicons name="close" size={18} color="white" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </View>
         </SafeAreaView>
         </>
 
