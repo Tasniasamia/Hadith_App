@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -54,11 +55,12 @@ const Hadith_Chapter = ({ navigation, route }) => {
   const screenWidth = Dimensions.get('window').width;
   const styles = StyleSheet.create({
       container: {
-
-        justifyContent: 'center',
+flexDirection:"row",
+        justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor:"#e2e1e1" ,
-        
+        backgroundColor:"rgba(7, 103, 52, 1)" ,
+        paddingHorizontal:10,
+       
      
       },
       image: {
@@ -87,12 +89,25 @@ const Hadith_Chapter = ({ navigation, route }) => {
     });
     const animateHeaderBackgroundColor = scrollOffsetY.interpolate({
       inputRange: [0, Scroll_Distance],
-      outputRange: ['#d1e7f8','#dfedd0'],
+      outputRange: ['rgba(7, 103, 52, 1)','rgba(7, 103, 52, 1)'],
       extrapolate: 'clamp',
     });
     // let scrollOffsetY = useRef(new Animated.Value(0)).current;  
 
+ //search Data  Processing
+ const [inputValue, setInputValue] = useState('');
 
+ const handleInputChange = (text) => {
+   setInputValue(text);
+   searchData(text);
+ };
+ console.log(inputValue);
+ const searchData = (name) => {
+     const filteredData = chapter.filter((index) =>
+       index.book.toLowerCase().includes(name.toLowerCase())
+     );
+     setChapter(filteredData);
+   };
   
   return (
 <>
@@ -102,7 +117,7 @@ const Hadith_Chapter = ({ navigation, route }) => {
 
 
     
-    <SafeAreaView   style={{ marginHorizontal: 5,}}>
+    <SafeAreaView   style={{ paddingHorizontal: 5,backgroundColor:"rgba(7, 103, 52, 1)"}}>
          <Animated.View
         style={[
           styles.container,
@@ -112,13 +127,21 @@ const Hadith_Chapter = ({ navigation, route }) => {
           }
 
         ]} >
+
       <Image
-        source={require("../assets/hadith_name.png")}
-        style={styles.image}
+        source={require("../assets/original.png")}
+        
         resizeMode="contain"
       />
-      <Text style={styles.text}>{name}</Text>
+      <Text style={{fontSize:18,color:"white"}}>{name}</Text>
+      <TextInput
+        style={{ borderColor: 'gray', borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10,backgroundColor:"white"}}
+        placeholder="Search here..."
+        value={inputValue}
+        onChangeText={handleInputChange}
+      />
     </Animated.View>
+
 
     <ScrollView 
         onScroll={Animated.event(
@@ -131,10 +154,10 @@ const Hadith_Chapter = ({ navigation, route }) => {
         <View key={index.id}>
       
     <View >
-        <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,paddingVertical:20,marginTop:0}}>
+        <View style={{flex:100,borderRadius:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"white", marginBottom: 10 ,paddingVertical:20,marginTop:0}}>
         {/* <View  style={{flex:80,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}> */}
-<Text style={{color:"gray",flex:10,marginLeft:8}}>{index2+1}.</Text>
-<Text style={{fontSize:15,color:"gray",flex:60}}>{index.book}</Text>
+<Text style={{color:"black",flex:10,marginLeft:8}}>{index2+1}.</Text>
+<Text style={{fontSize:15,color:"black",flex:60}}>{index.book}</Text>
         {/* </View> */}
 
         <View style={{flex:20,textAlign:"right"}}><Text> <TouchableOpacity onPress={()=>{navigation.navigate("Chapter_Details",{ page:index.hadithRange,name:name ,book:index.book})}}>

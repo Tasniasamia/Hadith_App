@@ -17,7 +17,7 @@ function Homepage({navigation,route}) {
 
     } , []);
     useEffect(()=>{
-       setHadith(Hadith_Data )
+    //    setHadith(Hadith_Data )
        setSearchResults(Hadith_Data);
 
     },[])
