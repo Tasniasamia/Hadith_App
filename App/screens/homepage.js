@@ -30,7 +30,7 @@ function Homepage({navigation,route}) {
     };
     console.log(inputValue);
     const searchData = (name) => {
-        const filteredData = Hadith.filter((index) =>
+        const filteredData = searchResults.filter((index) =>
           index.name.toLowerCase().includes(name.toLowerCase())
         );
         setSearchResults(filteredData);
