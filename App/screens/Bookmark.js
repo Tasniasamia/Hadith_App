@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Share } from 'react-native';
+import { TextInput } from 'react-native';
 const BookMark =({navigation}) => {
     const [BookItem, setBookItem] = useState([]);
 
@@ -72,15 +73,31 @@ const onShare = async () => {
       Alert.alert(error.message);
     }
   };
+  //search Data  Processing
+const [inputValue, setInputValue] = useState('');
+
+const handleInputChange = (text) => {
+  setInputValue(text);
+  searchData(text);
+};
+console.log(inputValue);
+const searchData = (name) => {
+    const filteredData = BookItem.filter((index) =>
+      index.page.toLowerCase().includes(name.toLowerCase())
+    );
+    setBookItem(filteredData);
+  };
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
-          flex: 1,
-          justifyContent: 'center',
+          flexDirection:"row",
+          justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor:"#e2e1e1" ,
-          height:40,
-          marginBottom:48
+          backgroundColor:"rgba(7, 103, 52, 1)" ,
+          paddingHorizontal:10,
+         top:0,
+          height:80,
+       marginBottom:5
         },
         image: {
           width: screenWidth ,
@@ -98,27 +115,34 @@ const onShare = async () => {
       });
     return (
         <>
-        <SafeAreaView style={{ marginHorizontal: 5, marginTop: 60 }}>
+         <SafeAreaView  style={{ paddingHorizontal: 5,backgroundColor:"rgba(0, 0, 0, 0.5)" }}>
+        <View
+        style={[
+          styles.container
 
+        ]} >
 
-          {/* Image and Text here */}
-
-
-          <View style={styles.container}>
       <Image
-        source={require("../assets/hadith_name.png")}
-        style={styles.image}
+        source={require("../assets/original.png")}
+        
         resizeMode="contain"
       />
-      <Text style={styles.text}>Hadith</Text>
+      {/* <Text style={{fontSize:18,color:"white"}}>{name}</Text> */}
+      <TextInput
+        style={{ borderColor: 'gray',color:"black", borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10,backgroundColor:"white"}}
+        placeholder="Search here..."
+        value={inputValue}
+        onChangeText={handleInputChange}
+      />
     </View>
+
           <ScrollView contentContainerStyle={{  backgroundColor: "#dfeccd" }}>
             {/* Display BookItem */}
             {BookItem.map((index, index2) => (
               <View key={index2} style={{backgroundColor:"#ecf4e3",marginVertical:10,marginHorizontal:10,paddingVertical:10,paddingHorizontal:10}}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ fontSize: 20, color: "green", fontWeight: "bold" }}>
-{index.book}</Text>
+{index.book}  {index.page}</Text>
 <View style={{ flexDirection: "row" }}>
 <TouchableOpacity onPress={()=>navigation.navigate("Homepage")}>
       <Ionicons name="caret-forward-circle-outline" size={25} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold",marginRight:5 }} />

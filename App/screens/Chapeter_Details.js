@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SahihalBukhari } from '../../hadith_Chapter.js';
 import { Share } from 'react-native';
+import { TextInput } from 'react-native';
 const Chapeter_Details =({navigation,route}) => {
     const[pagesdata,setPagesdata]=useState([])
     const[bookmarked,setBookmark]=useState(null);
@@ -108,16 +109,32 @@ const toggleModal = () => {
 };
 
 const [modal,setModal]=useState("english")
+//search Data  Processing
+const [inputValue, setInputValue] = useState('');
 
+const handleInputChange = (text) => {
+  setInputValue(text);
+  searchData(text);
+};
+console.log(inputValue);
+const searchData = (name) => {
+    const filteredData = pagesdata.filter((index) =>
+      index.page.toLowerCase().includes(name.toLowerCase())
+    );
+    setPagesdata(filteredData);
+  };
+ 
    //CSS Style
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
-          flex: 1,
-          justifyContent: 'center',
+          flexDirection:"row",
+          justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor:"#e2e1e1" ,
-          
+          backgroundColor:"rgba(7, 103, 52, 1)" ,
+          paddingHorizontal:10,
+         top:0,
+          height:80,
        marginBottom:5
         },
         image: {
@@ -178,17 +195,28 @@ const [modal,setModal]=useState("english")
       }
     return (
         <>
-        <SafeAreaView  style={{ marginHorizontal: 5, marginTop: 60}}>
-              <View style={styles.container}>
+        <SafeAreaView  style={{ paddingHorizontal: 5,backgroundColor:"rgba(0, 0, 0, 0.5)" }}>
+        <View
+        style={[
+          styles.container
+
+        ]} >
+
       <Image
-        source={require("../assets/hadith_name.png")}
-        style={styles.image}
+        source={require("../assets/original.png")}
+        
         resizeMode="contain"
       />
-      <Text style={styles.text}>Hadith</Text>
+      {/* <Text style={{fontSize:18,color:"white"}}>{name}</Text> */}
+      <TextInput
+        style={{ borderColor: 'gray',color:"black", borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10,backgroundColor:"white"}}
+        placeholder="Search here..."
+        value={inputValue}
+        onChangeText={handleInputChange}
+      />
     </View>
 
-    <ScrollView contentContainerStyle={{ marginTop: 50, backgroundColor: "#dfeccd" }}>
+    <ScrollView contentContainerStyle={{  backgroundColor: "#dfeccd" }}>
           {pagesdata.map((index, idx) => (
             <View key={idx} style={{ backgroundColor: "#ecf4e3", marginVertical: 10, marginHorizontal: 10, paddingVertical: 10, paddingHorizontal: 10 }}>
               <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
