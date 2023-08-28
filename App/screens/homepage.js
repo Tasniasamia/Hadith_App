@@ -9,6 +9,7 @@ function Homepage({navigation,route}) {
     const screenWidth = Dimensions.get('window').height;
     const [Hadith,setHadith]=useState([]);
     const [lan,setLan] = useState(true) // false = bangla , true = eng
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(()=>{
 
@@ -17,7 +18,24 @@ function Homepage({navigation,route}) {
     } , []);
     useEffect(()=>{
        setHadith(Hadith_Data )
+       setSearchResults(Hadith_Data);
+
     },[])
+    //search Data  Processing
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (text) => {
+      setInputValue(text);
+      searchData(text);
+    };
+    console.log(inputValue);
+    const searchData = (name) => {
+        const filteredData = Hadith.filter((index) =>
+          index.name.toLowerCase().includes(name.toLowerCase())
+        );
+        setSearchResults(filteredData);
+      };
+
     React.useLayoutEffect(() => {
         navigation.setOptions({
           
@@ -117,12 +135,20 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
   
                 </Pressable>
 
-                <View style={{width:'50%',justifyContent:'flex-start',alignItems:'flex-start',left:10}}>
+                <View style={{width:'85%',paddingVertical:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center",left:10,}}>
                     
                     <Text style={{top:17,color:colors.black,fontSize:14,display : lan ? 'none' : 'flex'}} >  বিস্তারিত</Text>                 
                     
-                    <Text style={{left:10,top:17,color:colors.black,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >HOME</Text>                 
-                
+                    <Text style={{color:colors.black,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >Home</Text>                 
+                    
+                  
+      <TextInput
+        style={{ borderColor: 'gray', borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10}}
+        placeholder="Search here..."
+        value={inputValue}
+        onChangeText={handleInputChange}
+      />
+      {/* <Button title="Submit" onPress={handleSubmit} /> */}
                 </View>
 
         </View>
@@ -148,7 +174,7 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
                {/* By using api */}
 
 
-{Hadith.map(index=>
+{searchResults.map(index=>
                 <View style={{backgroundColor:"white",width:350,marginVertical:5,flexDirection:"column"}} key={index.id}>
                     <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter", { name:index.name })}>
         {/* part-1 */}
@@ -163,9 +189,13 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
     <View style={{marginLeft:10,paddingTop:10}}>
         <Text style={{fontSize:20}}>{index.name}</Text>
         <Text style={{marginVertical:4,fontSize:18,textAlign:"left"}}>{index.language}</Text>
-        <Text >
+        <Text>
   <Ionicons name="stats-chart" size={20} color="gray" />
-  <Text style={{paddingHorizontal:10}}>  {index.pages.from}/  {index.pages.to}</Text>
+  {index.pages?.from && index.pages?.to && (
+    <Text style={{ paddingHorizontal: 10 }}>
+      {index.pages.from}/ {index.pages.to}
+    </Text>
+  )}
 </Text>
   
                 </View>
