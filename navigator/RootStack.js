@@ -32,6 +32,7 @@ import Hadith_Chapter from '../App/screens/Hadith_Chapter';
 import Chapeter_Details from '../App/screens/Chapeter_Details';
 import BookMark from '../App/screens/Bookmark';
 import TopNavbar from '../App/screens/TopNavbar';
+import Settings from '../App/screens/settings';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -149,6 +150,7 @@ const RootStack = ({navigation}) => {
                                         <Stack.Screen name="Hadith_Chapter" component={Hadith_Chapter} />
                                         <Stack.Screen name="Chapter_Details" component={Chapeter_Details} />
                                         <Stack.Screen name="Bookmark" component={BookMark} />
+                                        <Stack.Screen name="Settings" component={Settings}/>
                                         {/* <Stack.Screen name="Homepage" component={TopNavbar} /> */}
                                         {/* Write your code here */}
        

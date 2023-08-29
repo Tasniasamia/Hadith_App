@@ -5,7 +5,7 @@ import Hadith_Data from '../../Hadith_Category.json'
 import colors from '../config/colors';
 import TopNavbar from './TopNavbar';
 
-function Homepage({navigation,route}) {
+function Settings({navigation}) {
     const screenWidth = Dimensions.get('window').height;
     const [Hadith,setHadith]=useState([]);
     const [lan,setLan] = useState(true) // false = bangla , true = eng
@@ -13,31 +13,10 @@ function Homepage({navigation,route}) {
 
     useEffect(()=>{
 
-        console.log("hello")
+        console.log("Settings")
 
     } , []);
-    useEffect(()=>{
-    //    setHadith(Hadith_Data )
-       setSearchResults(Hadith_Data);
 
-    },[])
-    //search Data  Processing
-    const [inputValue, setInputValue] = useState('');
-
-    const handleInputChange = (text) => {
-      setInputValue(text);
-      searchData(text);
-    };
-    console.log(inputValue);
-    const searchData = (name) => {
-        const filteredData = searchResults.filter((index) =>
-          index.name.toLowerCase().includes(name.toLowerCase())
-        );
-        setSearchResults(filteredData);
-      };
-
-
-const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
    
     return (
@@ -56,21 +35,19 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
                     
                     <Text style={{top:17,color:colors.black,fontSize:14,display : lan ? 'none' : 'flex'}} >  বিস্তারিত</Text>                 
                     
-                    <Text style={{color:colors.white,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >Home</Text>                 
+                    <Text style={{color:colors.white,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >Settings</Text>                 
                     
                     <View style={{ width: '60%', height: '100%', top: 0, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 50 }} >
 
-                        <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Bookmark", { reminder: true })} >
+                        <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Homepage", { reminder: true })} >
+                            <Ionicons name="home-sharp" size={20} color="white" />
+                        </Pressable>
+
+                        <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Bookmark", {})} >
                             <Ionicons name="bookmarks-outline" size={20} color="white" />
                         </Pressable>
 
-                        {/* <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Bookmark", {})} >
-                            <Ionicons name="transgender-outline" size={20} color="white" />
-                        </Pressable> */}
-
-                        <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Settings", {})} >
-                            <Ionicons name="aperture-outline" size={20} color="white" />
-                        </Pressable>
+                       
 
                     </View>
       
@@ -79,88 +56,53 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
         </View>
 
+               {/* All Settings Options */}
+               <View >
+
+{/* font type */}
 
 
-
-        
-            <View style={[styles.MainContainer]}>
-                <StatusBar
-                animated={true}
-                backgroundColor='blue'
-                // marginBottom={20}
-
-
-            
-                // barStyle={statusBarStyle}
-                
-                />
-        <View style={{width:'100%',justifyContent:'center',alignItems:'center',marginTop:20}}>
-
-            <TextInput
-                    style={{ width:'90%',borderColor: 'gray', borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10}}
-                    placeholder="Search here..."
-                    value={inputValue}
-                    onChangeText={handleInputChange}
-                />
-         </View>       
-<ScrollView contentContainerStyle={{marginTop:10,marginHorizontal:20}}>
-                {/* one Category of Hadith */}
-             
-              
-
-
-
-               {/* By using api */}
-
-<View style={{width:'100%',justifyContent:'center',alignItems:'center',marginBottom:80}}>
-{searchResults.map(index=>
-                <View style={{backgroundColor:"white",width:350,marginVertical:5,flexDirection:"column"}} key={index.id}>
-                    <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter", { name:index.name })}>
-        {/* part-1 */}
-
-<View style={{flexDirection:"row",alignItems:"stretch"}}>
-    {/* part-1-(Hadith Logo) */}
-    <View style={{marginHorizontal:10,marginTop:12}}>
-<Image style={{ width: 80, height: 80 }}  source={require('../assets/Hadith_logo.png')}/>
-    </View>
-        {/* part-1-(Hadith_Category_Details) */}
-
-    <View style={{marginLeft:10,paddingTop:10}}>
-        <Text style={{fontSize:20}}>{index.name}</Text>
-        <Text style={{marginVertical:4,fontSize:18,textAlign:"left"}}>{index.language}</Text>
-        <Text>
-  <Ionicons name="stats-chart" size={20} color="gray" />
-  {index.pages?.from && index.pages?.to && (
-    <Text style={{ paddingHorizontal: 10 }}>
-      {index.pages.from}/ {index.pages.to}
-    </Text>
-  )}
-</Text>
-  
-                </View>
-    </View>
-
-
-    </TouchableOpacity>
-                
-                
-                
-      {/* part-2           */}
-                
-                
-      <View style={{flexDirection:"row",paddingVertical:10,marginLeft:13}}>
-              <Ionicons name="star-sharp" size={20} color="gray" />
-                <Text>  {index.totalPages} / {index.hadithCount}</Text>
-                </View>
-
-                </View>)}
-
-                </View>  
-           
-                </ScrollView>
-</View>
-
-
+<TouchableOpacity style={[styles.listStyle]}>
+    <Text style={{left:12,fontSize:16}}> Font Type</Text>
+    <Text></Text>
+</TouchableOpacity>
+{/* font size */}
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> Font Size</Text>
+    <Text></Text>
+</TouchableOpacity>
+{/* font color */}
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> Font Color</Text>
+    <Text></Text>
+</TouchableOpacity>
+{/* background */}
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> Background</Text>
+    <Text></Text>
+</TouchableOpacity>
+{/* contact us */}
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> Contact US</Text>
+    <Text></Text>
+</TouchableOpacity>
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> Rate the App</Text>
+    <Text></Text>
+</TouchableOpacity>
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> Share the App</Text>
+    <Text></Text>
+</TouchableOpacity>
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> More Apps by E-deen</Text>
+    <Text></Text>
+</TouchableOpacity>
+<TouchableOpacity style={styles.listStyle}>
+    <Text style={{left:12,fontSize:16}}> About</Text>
+    <Text></Text>
+</TouchableOpacity>
+</View>   
     </SafeAreaView>
     </>
     );
@@ -168,6 +110,21 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
 
 const styles = StyleSheet.create({
+
+    listStyle:{
+        // left:15,
+        flexDirection:"row",
+        alignContent:"center",
+        paddingHorizontal:10,
+        color:"gray",
+        marginHorizontal:5,
+        borderBottomWidth:1,
+        paddingVertical:10,
+        borderColor:"gray",
+        height:60
+        
+        
+    },
     MainContainer:{
         backgroundColor: colors.body,
         height:'100%',
@@ -353,4 +310,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Homepage;
+export default Settings;
