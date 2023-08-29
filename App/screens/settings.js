@@ -63,43 +63,43 @@ function Settings({navigation}) {
 
 
 <TouchableOpacity style={[styles.listStyle]}>
-    <Text style={{left:12,fontSize:16}}> Font Type</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> Font Type</Text>
     <Text></Text>
 </TouchableOpacity>
 {/* font size */}
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> Font Size</Text>
+    <Text style={{left:12,fontSize:16,color:"gray",color:"gray"}}> Font Size</Text>
     <Text></Text>
 </TouchableOpacity>
 {/* font color */}
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> Font Color</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> Font Color</Text>
     <Text></Text>
 </TouchableOpacity>
 {/* background */}
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> Background</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> Background</Text>
     <Text></Text>
 </TouchableOpacity>
 {/* contact us */}
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> Contact US</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> Contact US</Text>
     <Text></Text>
 </TouchableOpacity>
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> Rate the App</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> Rate the App</Text>
     <Text></Text>
 </TouchableOpacity>
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> Share the App</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> Share the App</Text>
     <Text></Text>
 </TouchableOpacity>
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> More Apps by E-deen</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> More Apps by E-deen</Text>
     <Text></Text>
 </TouchableOpacity>
 <TouchableOpacity style={styles.listStyle}>
-    <Text style={{left:12,fontSize:16}}> About</Text>
+    <Text style={{left:12,fontSize:16,color:"gray"}}> About</Text>
     <Text></Text>
 </TouchableOpacity>
 </View>   
@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
         borderBottomWidth:1,
         paddingVertical:10,
         borderColor:"gray",
-        height:60
+        height:60,
+        marginTop:10,
         
         
     },

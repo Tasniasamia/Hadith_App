@@ -185,7 +185,7 @@ const [modal,setModal]=useState("english")
       />
     </View>
 
-          <ScrollView contentContainerStyle={{  backgroundColor: "#dfeccd" }}>
+          <ScrollView contentContainerStyle={{  backgroundColor: "#dfeccd" }} >
             {/* Display BookItem */}
             {BookItem.map((index, index2) => (
             <View
@@ -196,6 +196,7 @@ const [modal,setModal]=useState("english")
                 marginHorizontal: 10,
                 paddingVertical: 10,
                 paddingHorizontal: 10,
+                marginTop:10
               }}
             >
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
