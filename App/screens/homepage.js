@@ -36,126 +36,52 @@ function Homepage({navigation,route}) {
         setSearchResults(filteredData);
       };
 
-    React.useLayoutEffect(() => {
-        navigation.setOptions({
-          
-          headerRight: () => (
-            
-            <>
-            <StatusBar
-                animated={true}
-                backgroundColor="blue"
-                height="100%"
-  marginBottom={30}
-                // barStyle={statusBarStyle}
-               
-            />
-            <View style={[styles.navbar1]}>
-            
-                    
 
-
-<View style={{ width: '100%', height: 30, top: 8, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 20 }} >
-
-    <Pressable style={{ marginRight: 15 }} onPress={() => navigation.navigate("Bookmark", { reminder: true })} >
-        <Ionicons name="bookmark-sharp" size={30} color="green" />
-    </Pressable>
-
-    <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
-        <Ionicons name="bookmark-sharp" size={30} color="green" />
-    </Pressable>
-
-    <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
-        <Ionicons name="bookmark-sharp" size={30} color="green" />
-    </Pressable>
-
-</View>
-            </View>
-            
-            </>
-          ),
-        });
-      }, [navigation]);
 const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
    
     return (
         <>
-           
-             {/* <SafeAreaView style={{width:'100%',height:'100%'}}>
-        <View style={[styles.navbar,{flexDirection:'row'}]}>   
-         
-               <Pressable activeOpacity={4} style={{ width: '5%', height: 25,left:15,top:17,borderWidth:0}} >
-                              
-                <Image
-                                    style={{ width: 17, height: 17,left:0,top:3}}
-                                    resizeMode='contain'
-                                    source={require('../assets/2star.jpg')}
-                                />
-
-               </Pressable>
-
-               <View style={{width:'50%',justifyContent:'flex-start',alignItems:'flex-start',left:10}}>
-                              
-                   
-                   <Text style={{left:10,top:17,color:colors.black,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} onPress={() => console.log("HEllO")}>HOME</Text>                 
-               
-               </View>
-
-              
-
-           </View>
-
-</SafeAreaView> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <SafeAreaView style={{width:'100%',height:'100%'}}>
+
+            
         <View style={[styles.navbar,{flexDirection:'row'}]}>   
           
                 <Pressable style={{ width: '5%', height: 25,left:10,top:15}} >
   
                 </Pressable>
 
-                <View style={{width:'85%',paddingVertical:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center",left:10,}}>
+                <View style={{width:'100%',paddingVertical:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center",left:10,}}>
                     
                     <Text style={{top:17,color:colors.black,fontSize:14,display : lan ? 'none' : 'flex'}} >  বিস্তারিত</Text>                 
                     
                     <Text style={{color:colors.black,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >Home</Text>                 
                     
-                  
-      <TextInput
-        style={{ borderColor: 'gray', borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10}}
-        placeholder="Search here..."
-        value={inputValue}
-        onChangeText={handleInputChange}
-      />
-      {/* <Button title="Submit" onPress={handleSubmit} /> */}
+                    <View style={{ width: '60%', height: '100%', top: 0, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 50 }} >
+
+                        <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", { reminder: true })} >
+                            <Ionicons name="bookmark-sharp" size={30} color="green" />
+                        </Pressable>
+
+                        <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
+                            <Ionicons name="bookmark-sharp" size={30} color="green" />
+                        </Pressable>
+
+                        <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
+                            <Ionicons name="bookmark-sharp" size={30} color="green" />
+                        </Pressable>
+
+                    </View>
+      
+     
                 </View>
 
         </View>
             <View style={[styles.MainContainer]}>
                 <StatusBar
                 animated={true}
-                backgroundColor="#f1f1f1"
+                backgroundColor='blue'
                 // marginBottom={20}
 
 
@@ -163,7 +89,15 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
                 // barStyle={statusBarStyle}
                 
                 />
+        <View style={{width:'100%',justifyContent:'center',alignItems:'center',marginTop:20}}>
 
+            <TextInput
+                    style={{ width:'90%',borderColor: 'gray', borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10}}
+                    placeholder="Search here..."
+                    value={inputValue}
+                    onChangeText={handleInputChange}
+                />
+         </View>       
 <ScrollView contentContainerStyle={{marginTop:10,marginHorizontal:20}}>
                 {/* one Category of Hadith */}
              
@@ -173,7 +107,7 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
                {/* By using api */}
 
-
+<View style={{width:'100%',justifyContent:'center',alignItems:'center',marginBottom:80}}>
 {searchResults.map(index=>
                 <View style={{backgroundColor:"white",width:350,marginVertical:5,flexDirection:"column"}} key={index.id}>
                     <TouchableOpacity   onPress={() => navigation.navigate("Hadith_Chapter", { name:index.name })}>
@@ -216,64 +150,11 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 
                 </View>)}
 
-            
+                </View>  
            
                 </ScrollView>
 </View>
-        {/* <View style={[styles.footerStyle]}>
 
-<View style={{width:'100%',height:69,justifyContent:'center',alignItems:'center',flexDirection:'row',backgroundColor:colors.white}}>
-        
-<Pressable style={[styles.tuchabluebuttonf,{borderBottomColor:colors.red,borderBottomWidth:5}]} onPress={() => navigation.navigate("Homepage",{})}>
-
-<Image resizeMode={'cover'} style={{width:22 ,height:22}} source={require("../assets/home.jpg")}/>
-
-<Text style={{top:4,color:colors.ash,fontSize:10,fontWeight:'bold',display : lan ? 'none' : 'flex'}}>বাসা অনসন্ধান করুন</Text>
-<Text style={{top:7.8,color:colors.red,fontSize:10,display : lan ? 'flex' : 'none',fontFamily: 'Poppins_400Regular',letterSpacing:0.9}}>HOME</Text>
-
-</Pressable>
-
-<Pressable style={[styles.tuchabluebuttonf,{borderBottomColor:colors.dblue,borderBottomWidth:0}]} onPress={() => navigation.navigate("Reminder",{})}>
-<Image resizeMode={'cover'} style={{width:22 ,height:22}} source={require("../assets/study.jpg")}/>
-<Text style={{top:4,color:colors.ash,fontSize:10,fontWeight:'bold',display : lan ? 'none' : 'flex'}}>লগ ইন করুন </Text>
-<Text style={{top:7.8,color:colors.ash,fontSize:10,display : lan ? 'flex' : 'none',fontFamily: 'Poppins_400Regular',letterSpacing:0.9}}>STUDY</Text>
-
-</Pressable>
-
-
-
-<Pressable style={[styles.tuchabluebuttonf,{borderBottomColor:colors.red,borderBottomWidth:0}]} onPress={() =>  navigation.navigate('CustomSidebarMenu',{})}>
-
-<Image resizeMode={'cover'} style={{width:22 ,height:22}} source={require("../assets/exam.jpg")}/>
-<Text style={{top:4,color:colors.ash,fontSize:10,fontWeight:'bold',display : lan ? 'none' : 'flex'}}>লগ ইন করুন </Text>
-<Text style={{top:7.8,color:colors.ash,fontSize:10,display : lan ? 'flex' : 'none',fontFamily: 'Poppins_400Regular',letterSpacing:0.9}}>EXAM</Text>
-
-</Pressable>
-
-
-{/*  
-
-<Pressable style={[styles.tuchabluebuttonf,{borderBottomColor:colors.green,borderBottomWidth:0}]} onPress={() => navigation.navigate("Heathmart",{})}>
-
-<Image resizeMode={'cover'} style={{width:22 ,height:22}} source={require("../assets/estore.jpg")}/>
-<Text style={{top:4,color:colors.ash,fontSize:10,fontWeight:'bold',display : lan ? 'none' : 'flex'}}>বাসা অনসন্ধান করুন</Text>
-<Text style={{top:7.8,color:colors.ash,fontSize:10,display : lan ? 'flex' : 'none',fontFamily: 'Poppins_400Regular',letterSpacing:0.9}}>E-STORE</Text>
-
-</Pressable>
-
-
-<Pressable style={[styles.tuchabluebuttonf,{borderBottomColor:colors.dblue,borderBottomWidth:0}]} onPress={() => navigation.navigate("Promohome",{})  }>
-
-<Image resizeMode={'cover'} style={{width:22 ,height:22}} source={require('../assets/top_right_promo.jpg')}/>
-<Text style={{top:4,color:colors.black,fontSize:10,fontWeight:'bold',display : lan ? 'none' : 'flex'}}>লগ ইন করুন </Text>
-<Text style={{top:7.8,color:colors.ash,fontSize:10,display : lan ? 'flex' : 'none',fontFamily: 'Poppins_400Regular',letterSpacing:0.9}}>PROMO</Text>
-
-</Pressable> */}
-
-
-{/* 
-</View>
-</View> */} 
 
     </SafeAreaView>
     </>
@@ -284,7 +165,7 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
 const styles = StyleSheet.create({
     MainContainer:{
         backgroundColor: colors.body,
-        height:'85.2%',
+        height:'100%',
         width:'100%'
     },
 
