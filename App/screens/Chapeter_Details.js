@@ -9,6 +9,7 @@ import { SahihalBukhari } from '../../hadith_Chapter.js';
 import { Share } from 'react-native';
 import { TextInput } from 'react-native';
 const Chapeter_Details =({navigation,route}) => {
+    const [shared,setShared]=useState("Hadith")
     const[pagesdata,setPagesdata]=useState([])
     const[bookmarked,setBookmark]=useState(null);
     const { page,name,book } = route.params;
@@ -80,12 +81,11 @@ const bookmark = async(id)=>{
 // Share Hadith
 // const SocialShareScreen = () => {
 //     onShare();
-    const onShare = async () => {
+    const onShare = async (data) => {
         try {
           const result = await Share.share({
             message:
-            'https://play.google.com/store/apps/details?id=com.qitca.qwikmedic', // (pass your hadith text here)
-        
+data        
           });
           if (result.action === Share.sharedAction) {
             if (result.activityType) {
@@ -207,6 +207,13 @@ const searchData = (name) => {
         
         resizeMode="contain"
       />
+        <TouchableOpacity onPress={toggleModal}>
+        <Ionicons name="contract" size={30} color="white" />
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={()=>navigation.navigate("Bookmark")}>
+      <Ionicons name="bookmarks-outline" size={25} color="white" style={{ paddingVertical: 5, color: "white", fontWeight: "bold",marginRight:5 }} />
+    </TouchableOpacity>
       {/* <Text style={{fontSize:18,color:"white"}}>{name}</Text> */}
       <TextInput
         style={{ borderColor: 'gray',color:"black", borderWidth: 1, paddingVertical: 10,paddingHorizontal:20 ,borderRadius:10,backgroundColor:"white"}}
@@ -225,11 +232,12 @@ const searchData = (name) => {
                 </Text>
                 <View style={{ flexDirection: "row" }}>
                   {/* ... (TouchableOpacity components) */}
-                </View><View style={{ flexDirection: "row",alignItems:"center" }}>
+                </View>
+                <View style={{ flexDirection: "row",alignItems:"center" }}>
 
-                <TouchableOpacity onPress={toggleModal}>
+                {/* <TouchableOpacity onPress={toggleModal}>
                 <Ionicons name="caret-forward-circle-outline" size={25} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold",marginRight:5 }} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
                 <TouchableOpacity onPress={()=>navigation.navigate("Bookmark")}>
       <Ionicons name="caret-forward-circle-outline" size={25} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold",marginRight:5 }} />
     </TouchableOpacity>
@@ -237,7 +245,16 @@ const searchData = (name) => {
     <TouchableOpacity onPress={()=>bookmark(index.id)}>
       <Ionicons name="bookmark-outline" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
-    <TouchableOpacity style={{marginLeft:10}} onPress={onShare}>
+    <TouchableOpacity style={{marginLeft:10}} onPress={()=>{onShare(
+
+  modal === "Bengali" ? index.bengali_meaning :
+  modal === "English" ? index.english_meaning :
+  modal === "Arabic" ? index.arabic_meaning :
+  modal === "Urdu" ? index.urdu_meaning :
+  index.english_meaning
+
+
+    )}}>
         <Ionicons name="share-social-sharp" size={20} color="gray" style={{ paddingVertical: 5, color: "green", fontWeight: "bold" }} />
     </TouchableOpacity>
   </View>

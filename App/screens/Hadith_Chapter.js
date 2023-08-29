@@ -9,13 +9,17 @@ import {
   Animated,
   TouchableOpacity,
   TextInput,
+  Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SahihalBukhari, SahihMuslim,SunanNasai,Sahih_Abi_Daud,Jamih_Tirmidhi,subh_ibne_majah  } from '../../hadith_book_data';
 import TopNavbar from './TopNavbar';
+import colors from '../config/colors';
 
 const Hadith_Chapter = ({ navigation, route }) => {
+  const [lan,setLan] = useState(true) // false = bangla , true = eng
+
   const [chapter, setChapter] = useState([]);
   const [load,setLoad]=useState(true);
   const { name } = route.params;
@@ -76,6 +80,20 @@ flexDirection:"row",
         fontSize: 14,
         fontWeight: 'bold',
       },
+      navbar:{
+  
+        backgroundColor: "rgba(7, 103, 52, 1)",
+        width:'100%',
+        height:55,
+
+        shadowColor: '#000',
+        shadowOffset: { width: 1.5, height: 1.5 },
+        shadowOpacity:  0.8,
+        shadowRadius: 5,
+        elevation: 6,
+
+
+    },
     });
 
     const Header_Max_Height = 110;
@@ -118,6 +136,40 @@ flexDirection:"row",
 
     
     <SafeAreaView   style={{ paddingHorizontal: 5,backgroundColor:"rgba(7, 103, 52, 1)"}}>
+
+    {/* <View style={[styles.navbar,{flexDirection:'row'}]}>   
+          
+          <Pressable style={{ width: '5%', height: 25,left:10,top:15}} >
+
+          </Pressable>
+
+          <View style={{width:'100%',paddingVertical:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center",left:10,}}>
+              
+              <Text style={{top:17,color:colors.black,fontSize:14,display : lan ? 'none' : 'flex'}} >  বিস্তারিত</Text>                 
+              
+              <Text style={{color:colors.white,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >Home</Text>                 
+              
+              <View style={{ width: '60%', height: '100%', top: 0, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 50 }} >
+
+                  <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Bookmark", { reminder: true })} >
+                      <Ionicons name="bookmarks-outline" size={20} color="white" />
+                  </Pressable>
+
+                  <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Bookmark", {})} >
+                      <Ionicons name="transgender-outline" size={20} color="white" />
+                  </Pressable>
+
+                  <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
+                      <Ionicons name="aperture-outline" size={20} color="white" />
+                  </Pressable>
+
+              </View>
+
+
+          </View>
+
+  </View> */}
+
          <Animated.View
         style={[
           styles.container,

@@ -56,20 +56,20 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
                     
                     <Text style={{top:17,color:colors.black,fontSize:14,display : lan ? 'none' : 'flex'}} >  বিস্তারিত</Text>                 
                     
-                    <Text style={{color:colors.black,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >Home</Text>                 
+                    <Text style={{color:colors.white,fontSize:14,display : lan ? 'flex' : 'none',letterSpacing:.9,fontFamily: 'Poppins_400Regular'}} >Home</Text>                 
                     
                     <View style={{ width: '60%', height: '100%', top: 0, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 50 }} >
 
-                        <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", { reminder: true })} >
-                            <Ionicons name="bookmark-sharp" size={30} color="green" />
+                        <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Bookmark", { reminder: true })} >
+                            <Ionicons name="bookmarks-outline" size={20} color="white" />
                         </Pressable>
 
-                        <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
-                            <Ionicons name="bookmark-sharp" size={30} color="green" />
-                        </Pressable>
+                        {/* <Pressable style={{ marginRight: 20 }} onPress={() => navigation.navigate("Bookmark", {})} >
+                            <Ionicons name="transgender-outline" size={20} color="white" />
+                        </Pressable> */}
 
                         <Pressable style={{ marginRight: 0 }} onPress={() => navigation.navigate("Bookmark", {})} >
-                            <Ionicons name="bookmark-sharp" size={30} color="green" />
+                            <Ionicons name="aperture-outline" size={20} color="white" />
                         </Pressable>
 
                     </View>
@@ -78,6 +78,11 @@ const scrollOffsetY=useRef(new Animated.Value(0)).current;
                 </View>
 
         </View>
+
+
+
+
+        
             <View style={[styles.MainContainer]}>
                 <StatusBar
                 animated={true}
@@ -223,7 +228,7 @@ const styles = StyleSheet.create({
 
     navbar:{
   
-        backgroundColor: colors.white,
+        backgroundColor: "rgba(7, 103, 52, 1)",
         width:'100%',
         height:55,
 
