@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SahihalBukhari } from '../../hadith_Chapter.js';
 import Sunnah_abi_dawd from '../../sunnah_abi_daud.json'
-
+import Sunnah_ibn_mazah from "../../sunah_ibn_majah.json"
 import { Share } from 'react-native';
 import { TextInput } from 'react-native';
 const Chapeter_Details =({navigation,route}) => {
@@ -28,6 +28,11 @@ const Chapeter_Details =({navigation,route}) => {
           const filteredData = Sunnah_abi_dawd.filter((index) => index.HadisBookName === name && index.BookName === book);
           setPagesdata(filteredData);
       }
+     if (Sunnah_ibn_mazah) {
+        const filteredData = Sunnah_ibn_mazah.filter((index) => index.HadisBookName === name && index.BookName === book);
+        setPagesdata(filteredData);
+    }
+      
     }, [name, page, book]);
 console.log("All_Hadith_description",pagesdata);
 
