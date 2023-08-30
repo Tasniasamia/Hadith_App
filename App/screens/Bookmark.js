@@ -82,7 +82,7 @@ const handleInputChange = (text) => {
 console.log(inputValue);
 const searchData = (name) => {
     const filteredData = BookItem.filter((index) =>
-      index.page.toLowerCase().includes(name.toLowerCase())
+      index.Narrated.toLowerCase().includes(name.toLowerCase())
     );
     setBookItem(filteredData);
   };
@@ -201,7 +201,7 @@ const [modal,setModal]=useState("english")
             >
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ fontSize: 20, color: 'green', fontWeight: 'bold' }}>
-                  {index.book} <Text>{index.page}</Text>
+                  {index.Book_Reference}
                 </Text>
                 <View style={{ flexDirection: 'row' }}>
                   <TouchableOpacity onPress={() => navigation.navigate('Homepage')}>
@@ -223,11 +223,11 @@ const [modal,setModal]=useState("english")
    
     <TouchableOpacity style={{marginLeft:10}} onPress={()=>{onShare(
 
-  modal === "Bengali" ? index.bengali_meaning :
-  modal === "English" ? index.english_meaning :
-  modal === "Arabic" ? index.arabic_meaning :
-  modal === "Urdu" ? index.urdu_meaning :
-  index.english_meaning
+ 
+  modal === "English" ? index.Hadisth_English:
+  modal === "Arabic" ? index.Hadith_Arabic:
+ 
+  index.Hadisth_English
 
 
     )}}>
@@ -235,13 +235,13 @@ const [modal,setModal]=useState("english")
     </TouchableOpacity>
                 </View>
               </View>
-              <Text style={{ paddingVertical: 15 }}>{index.narration} </Text>
+              <Text style={{ paddingVertical: 15 }}>{index.Narrated} </Text>
                 <Text> {
-    modal === "Bengali" ? index.bengali_meaning :
-    modal === "English" ? index.english_meaning :
-    modal === "Arabic" ? index.arabic_meaning :
-    modal === "Urdu" ? index.urdu_meaning :
-    index.english_meaning
+  
+  modal === "English" ? index.Hadisth_English:
+  modal === "Arabic" ? index.Hadith_Arabic:
+ 
+  index.Hadisth_English
   }</Text>
             </View>
           ))}
@@ -258,9 +258,9 @@ const [modal,setModal]=useState("english")
     <Text style={{textAlign:"center"}}>Languages</Text>
 
 
-    <TouchableOpacity  style={styles.translate_text} onPress={()=>{setModal("Bengali")}}>
+    {/* <TouchableOpacity  style={styles.translate_text} onPress={()=>{setModal("Bengali")}}>
           <Text>Bengali</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("English")}}>
           <Text>English</Text>
@@ -272,9 +272,9 @@ const [modal,setModal]=useState("english")
         </TouchableOpacity>
 
 
-        <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("Urdu")}}>
+        {/* <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("Urdu")}}>
           <Text  >Urdu</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
 
 

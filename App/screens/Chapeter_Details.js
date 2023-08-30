@@ -6,6 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SahihalBukhari } from '../../hadith_Chapter.js';
+import Sunnah_abi_dawd from '../../sunnah_abi_daud.json'
+
 import { Share } from 'react-native';
 import { TextInput } from 'react-native';
 const Chapeter_Details =({navigation,route}) => {
@@ -19,11 +21,13 @@ const Chapeter_Details =({navigation,route}) => {
     //   );
     console.log("name   page book", name ,  page , book)
     useEffect(() => {
-        const hadithChapterAll = SahihalBukhari.filter(
-            (index) => index.category === name && index.page === page && index.book === book
-        );
-
-        setPagesdata(hadithChapterAll);
+        // const hadithChapterAll = SahihalBukhari.filter(
+        //     (index) => index.category === name &&  index.book === book
+        // );
+        if (Sunnah_abi_dawd) {
+          const filteredData = Sunnah_abi_dawd.filter((index) => index.HadisBookName === name && index.BookName === book);
+          setPagesdata(filteredData);
+      }
     }, [name, page, book]);
 console.log("All_Hadith_description",pagesdata);
 
@@ -64,7 +68,7 @@ const bookmark = async(id)=>{
         }
         const selectedHadith = pagesdata.find((index) => index.id === id);
 
-    const dataIsExit =newData.find(index=>index.page === selectedHadith.page)
+    const dataIsExit =newData.find(index=>index.Column1 === selectedHadith.Column1)
    if(dataIsExit){
     return console.log("Data already exit");
    }
@@ -119,7 +123,7 @@ const handleInputChange = (text) => {
 console.log(inputValue);
 const searchData = (name) => {
     const filteredData = pagesdata.filter((index) =>
-      index.page.toLowerCase().includes(name.toLowerCase())
+      index.Narrated.toLowerCase().includes(name.toLowerCase())
     );
     setPagesdata(filteredData);
   };
@@ -228,7 +232,7 @@ const searchData = (name) => {
             <View key={idx} style={{ backgroundColor: "#ecf4e3", marginVertical: 10, marginHorizontal: 10, paddingVertical: 10, paddingHorizontal: 10 }}>
               <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <Text style={{ fontSize: 20, color: "green", fontWeight: "bold" }}>
-                {index.book}   {index.page}
+                {index.Book_Reference}   
                 </Text>
                 <View style={{ flexDirection: "row" }}>
                   {/* ... (TouchableOpacity components) */}
@@ -247,11 +251,11 @@ const searchData = (name) => {
     </TouchableOpacity>
     <TouchableOpacity style={{marginLeft:10}} onPress={()=>{onShare(
 
-  modal === "Bengali" ? index.bengali_meaning :
-  modal === "English" ? index.english_meaning :
-  modal === "Arabic" ? index.arabic_meaning :
-  modal === "Urdu" ? index.urdu_meaning :
-  index.english_meaning
+  // modal === "Bengali" ? index.bengali_meaning :
+  modal === "English" ? index.Hadisth_English:
+  modal === "Arabic" ? index.Hadith_Arabic :
+  // modal === "Urdu" ? index.urdu_meaning :
+  index.Hadisth_English
 
 
     )}}>
@@ -260,13 +264,13 @@ const searchData = (name) => {
   </View>
               </View>
               <View>
-                <Text style={{ paddingVertical: 15 }}>{index.narration} </Text>
+                <Text style={{ paddingVertical: 15 }}>{index.Narrated} </Text>
                 <Text> {
-    modal === "Bengali" ? index.bengali_meaning :
-    modal === "English" ? index.english_meaning :
-    modal === "Arabic" ? index.arabic_meaning :
-    modal === "Urdu" ? index.urdu_meaning :
-    index.english_meaning
+    // modal === "Bengali" ? index.bengali_meaning :
+    modal === "English" ? index.Hadisth_English :
+    modal === "Arabic" ? index.Hadith_Arabic :
+    // modal === "Urdu" ? index.urdu_meaning :
+    index.Hadisth_English
   }</Text>
               </View>
             </View>
@@ -285,9 +289,9 @@ const searchData = (name) => {
         <Text style={{textAlign:"center"}}>Languages</Text>
 
 
-        <TouchableOpacity  style={styles.translate_text} onPress={()=>{setModal("Bengali")}}>
+        {/* <TouchableOpacity  style={styles.translate_text} onPress={()=>{setModal("Bengali")}}>
               <Text>Bengali</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("English")}}>
               <Text>English</Text>
@@ -299,9 +303,9 @@ const searchData = (name) => {
             </TouchableOpacity>
 
 
-            <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("Urdu")}}>
+            {/* <TouchableOpacity   style={styles.translate_text}  onPress={()=>{setModal("Urdu")}}>
               <Text  >Urdu</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
 
 
