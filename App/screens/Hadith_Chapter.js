@@ -13,10 +13,15 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { SahihalBukhari, SahihMuslim,SunanNasai,Sahih_Abi_Daud,Jamih_Tirmidhi,subh_ibne_majah  } from '../../hadith_book_data';
+// import { SahihalBukhari, SahihMuslim,SunanNasai,Sahih_Abi_Daud,Jamih_Tirmidhi,subh_ibne_majah  } from '../../hadith_book_data';
 import TopNavbar from './TopNavbar';
 import colors from '../config/colors';
-
+import  SahihalBukhari from '../../Hadis_Chapter_Collections/Bukhari.json';
+import  SahihMuslim from '../../Hadis_Chapter_Collections/Muslim.json';
+import SunanNasai from '../../Hadis_Chapter_Collections/Nasai.json';
+import Sahih_Abi_Daud from '../../Hadis_Chapter_Collections/Abi_Dawud.json';
+import Jamih_Tirmidhi from '../../Hadis_Chapter_Collections/Tirmidhi.json';
+import subh_ibne_majah from '../../Hadis_Chapter_Collections/Majah.json';
 const Hadith_Chapter = ({ navigation, route }) => {
   const [lan,setLan] = useState(true) // false = bangla , true = eng
 
@@ -122,7 +127,7 @@ flexDirection:"row",
  console.log(inputValue);
  const searchData = (name) => {
      const filteredData = chapter.filter((index) =>
-       index.book.toLowerCase().includes(name.toLowerCase())
+       index.bookname_english.toLowerCase().includes(name.toLowerCase())
      );
      setChapter(filteredData);
    };
@@ -203,18 +208,20 @@ flexDirection:"row",
         
         >
       {chapter.map((index,index2) => (
-        <View key={index.id}>
+        <View key={index.serial_no}>
       
     <View >
         <View style={{flex:100,borderRadius:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"white", marginBottom: 10 ,paddingVertical:20,marginTop:0}}>
         {/* <View  style={{flex:80,flexDirection:"row",justifyContent:"space-evenly",alignItems:"center"}}> */}
 <Text style={{color:"black",flex:10,marginLeft:8}}>{index2+1}.</Text>
-<Text style={{fontSize:15,color:"black",flex:60}}>{index.book}</Text>
+<Text style={{fontSize:15,color:"black",flex:40}}>{index.bookname_english}</Text>
         {/* </View> */}
 
-        <View style={{flex:20,textAlign:"right"}}><Text> <TouchableOpacity onPress={()=>{navigation.navigate("Chapter_Details",{ page:index.hadithRange,name:name ,book:index.book})}}>
-          <Text> {index.hadithRange}</Text>
-         </TouchableOpacity></Text></View>
+        <TouchableOpacity style={{flexDirection:"row",flex:20}} onPress={()=>{navigation.navigate("Chapter_Details",{ page:index.hadith_serial_start,name:name ,book:index.bookname_english})}}>
+          <Text> {index.hadith_serial_start}</Text><Text>-</Text>
+          <Text> {index.hadith_serial_end}</Text>
+
+         </TouchableOpacity>
 
         </View>
         {/* <View style={{flex:100,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"#dbdbda", marginBottom: 5 ,padding:20}}>
