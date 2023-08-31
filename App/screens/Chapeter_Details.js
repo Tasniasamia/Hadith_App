@@ -24,31 +24,35 @@ const Chapeter_Details =({navigation,route}) => {
     //   );
     console.log("name   page book", name ,  page , book)
     useEffect(() => {
-        // const hadithChapterAll = SahihalBukhari.filter(
-        //     (index) => index.category === name &&  index.book === book
-        // );
-        if (Sunnah_abi_dawd) {
+      let mergedData = [];
+  
+      if (Sunnah_abi_dawd) {
           const filteredData = Sunnah_abi_dawd.filter((index) => index.HadisBookName === name && index.BookName === book);
-          setPagesdata(filteredData);
+          mergedData = [...mergedData, ...filteredData];
       }
-     if (Sunnah_ibn_mazah) {
-        const filteredData = Sunnah_ibn_mazah.filter((index) => index.HadisBookName === name && index.BookName === book);
-        setPagesdata(filteredData);
-    }
-    if(SahihMuslim){
-      const filteredData = SahihMuslim.filter((index) => index.HadisBookName === name && index.BookName === book);
-      setPagesdata(filteredData);
-    }
-    if(SunanNasai){
-      const filteredData = SunanNasai.filter((index) => index.HadisBookName === name && index.BookName === book);
-      setPagesdata(filteredData);
-    }
       
-    if(jamih_Tirmidhi){
-      const filteredData = jamih_Tirmidhi.filter((index) => index.HadisBookName === name && index.BookName === book);
-      setPagesdata(filteredData);
-    }
-    }, [name, page, book]);
+      if (Sunnah_ibn_mazah) {
+          const filteredData = Sunnah_ibn_mazah.filter((index) => index.HadisBookName === name && index.BookName === book);
+          mergedData = [...mergedData, ...filteredData];
+      }
+      
+      if (SahihMuslim) {
+          const filteredData = SahihMuslim.filter((index) => index.HadisBookName === name && index.BookName === book);
+          mergedData = [...mergedData, ...filteredData];
+      }
+      
+      if (SunanNasai) {
+          const filteredData = SunanNasai.filter((index) => index.HadisBookName === name && index.BookName === book);
+          mergedData = [...mergedData, ...filteredData];
+      }
+      
+      if (jamih_Tirmidhi) {
+          const filteredData = jamih_Tirmidhi.filter((index) => index.HadisBookName === name && index.BookName === book);
+          mergedData = [...mergedData, ...filteredData];
+      }
+  
+      setPagesdata(mergedData);
+  }, [name, page, book]);
 console.log("All_Hadith_description",pagesdata);
 
 const BOOKMARK_KEY ='bookmark';
