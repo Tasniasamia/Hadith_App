@@ -8,6 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SahihalBukhari } from '../../hadith_Chapter.js';
 import Sunnah_abi_dawd from '../../sunnah_abi_daud.json'
 import Sunnah_ibn_mazah from "../../sunah_ibn_majah.json"
+import SahihMuslim from '../../sahih_muslim.json';
+import SunanNasai from '../../Sunnah_nasai.json';
+import jamih_Tirmidhi from '../../Jamih_Trimidhi.json';
 import { Share } from 'react-native';
 import { TextInput } from 'react-native';
 const Chapeter_Details =({navigation,route}) => {
@@ -32,7 +35,19 @@ const Chapeter_Details =({navigation,route}) => {
         const filteredData = Sunnah_ibn_mazah.filter((index) => index.HadisBookName === name && index.BookName === book);
         setPagesdata(filteredData);
     }
+    if(SahihMuslim){
+      const filteredData = SahihMuslim.filter((index) => index.HadisBookName === name && index.BookName === book);
+      setPagesdata(filteredData);
+    }
+    if(SunanNasai){
+      const filteredData = SunanNasai.filter((index) => index.HadisBookName === name && index.BookName === book);
+      setPagesdata(filteredData);
+    }
       
+    if(jamih_Tirmidhi){
+      const filteredData = jamih_Tirmidhi.filter((index) => index.HadisBookName === name && index.BookName === book);
+      setPagesdata(filteredData);
+    }
     }, [name, page, book]);
 console.log("All_Hadith_description",pagesdata);
 
